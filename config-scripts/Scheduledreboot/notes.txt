@@ -1,7 +1,0 @@
-on premises machines dont need user interactivity
-alraedy have script that forces reboot as scheduled task
-
-2.
-laptops
-user interactivity
-    - PSADT function

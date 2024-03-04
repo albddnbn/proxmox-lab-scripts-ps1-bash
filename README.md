@@ -1,6 +1,8 @@
 # powershellnexusone
 
-## A collection of Powershell scripts and functions used for a variety of purposes and subjects.
+![PowerShell](https://img.shields.io/badge/PowerShell-%235391FE.svg?style=for-the-badge&logo=powershell&logoColor=white)
+
+## A collection of Powershell scripts dealing with variety of subjects.
 
 ### Directories in repository:
 

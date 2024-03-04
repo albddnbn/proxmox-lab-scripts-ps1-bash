@@ -7,7 +7,13 @@
 #>
 param(
 	[ValidateScript({
-			Test-Path $_ -PathType 'Container'
+			if (Test-Path $_ -PathType 'Container' -ErrorAction SilentlyContinue) {
+				return $true
+			}
+			else {
+				Write-Host "$_ must be a valid filepath!" -ForegroundColor Red
+				return $false
+			}
 		})]
 	[string]$TargetPath
 )
