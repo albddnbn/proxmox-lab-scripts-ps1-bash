@@ -1,0 +1,9 @@
+;
+; Config file for application.  This is read by auto-updaters.
+;
+
+$PackageName = "Template"
+$PackageVersion = "x.x.x.x"
+$FileCheck = "%ProgramFiles(x86)%\"
+$VersionField = "BinFileVersion"
+$SetupCmd = "setup.cmd"

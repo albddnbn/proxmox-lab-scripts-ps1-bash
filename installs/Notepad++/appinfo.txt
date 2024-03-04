@@ -1,0 +1,6 @@
+UninstallString    : "C:\Program Files\Notepad++\uninstall.exe"
+UninstallSubkey    : Notepad++
+Is64BitApplication : True
+Publisher          : Notepad Team
+DisplayVersion     : 8.6
+DisplayName        : Notepad (64-bit x64)

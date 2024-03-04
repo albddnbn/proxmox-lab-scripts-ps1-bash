@@ -1,0 +1,9 @@
+UninstallString    : MsiExec.exe /X{3AE26F3E-1069-4522-9B2D-E7CE75BE63A8}
+UninstallSubkey    : {3AE26F3E-1069-4522-9B2D-E7CE75BE63A8}
+InstallLocation    :
+ProductCode        : {3AE26F3E-1069-4522-9B2D-E7CE75BE63A8}
+Is64BitApplication : False
+Publisher          : IPEVO
+InstallDate        : 20231224
+DisplayVersion     : 4.6.151.0
+DisplayName        : Annotator 4.6.151.0

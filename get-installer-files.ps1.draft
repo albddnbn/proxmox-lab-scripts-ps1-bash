@@ -1,0 +1,19 @@
+$thefiles | % {
+$theurl = get-content "$($_.fullname)"
+
+$outputfilename = [system.io.path]::getfilename($theurl)
+
+$fulloutputpath = join-path -path "$($_.Directoryname)" -childpath $outputfilename
+try {
+Invoke-WebRequest -Uri $theurl -OutFile "$fulloutputpath"
+} catch {
+invoke-webrequest -uri $theurl
+}
+$checkforfile = get-childitem -path "$($_.directoryname)" -include *.msi,*.exe,*.zip -file -recurse -erroraction silentlycontinue
+if ($checkforfile) {
+write-host "Found msi,exe,zip file(s) in $($_.directoryname)" -foregroundcolor green
+$checkforfile.name
+} else {
+write-host "No msi, exe, zip file(s) found in $($_.directoryname)" -foregroundcolor red
+}
+}

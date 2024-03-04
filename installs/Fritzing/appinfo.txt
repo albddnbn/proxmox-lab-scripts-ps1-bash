@@ -1,0 +1,5 @@
+2-11-2024 : Added a 'InstallType' parameter to the function - if 'Public' is passed as value, then the script will do a 'Public' installation.
+            A 'Public' installation consists on copying Fritzing source files to C:\Program Files (x86)\Fritzing, copying source files to C:\Users\Public\Documents\Fritzing,
+            and creating a desktop shortcut on C:\Users\Public\Desktop that points to the Fritzing.exe.
+            The script also sets a scheduled task to 'reprovision' public source files at each user login since user's will have power to delete source files.
+            Another possible solution for this issue could be messing with the permissions on the Fritzing source file folder, but this could interfere with students' ability to use the software if not done correctly.

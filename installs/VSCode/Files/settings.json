@@ -1,0 +1,6 @@
+{
+  "update.mode": "none",
+  "update.enableWindowsBackgroundUpdates": false,
+  "extensions.autoUpdate": false,
+  "extensions.autoCheckUpdates": false
+}

@@ -1,0 +1,1 @@
+https://ipevo-api-cms.s3.us-west-1.amazonaws.com/software/annotator/download/Windows/Annotator_v4.6.151.0.msi.zip

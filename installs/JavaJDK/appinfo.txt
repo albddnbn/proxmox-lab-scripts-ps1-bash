@@ -1,0 +1,9 @@
+UninstallString    : MsiExec.exe /X{75B0E1AE-DC20-5AC0-A358-61B0256DADBE}
+UninstallSubkey    : {75B0E1AE-DC20-5AC0-A358-61B0256DADBE}
+InstallLocation    : C:\Program Files\Java\jdk-21\
+ProductCode        : {75B0E1AE-DC20-5AC0-A358-61B0256DADBE}
+Is64BitApplication : True
+Publisher          : Oracle Corporation
+InstallDate        : 20231224
+DisplayVersion     : 21.0.1.0
+DisplayName        : Java(TM) SE Development Kit 21.0.1 (64-bit)

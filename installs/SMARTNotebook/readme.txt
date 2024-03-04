@@ -1,0 +1,1 @@
+https://support.smarttech.com/docs/software/notebook/notebook-17/en/installing-and-maintaining/deploying-windows/deploying.cshtml

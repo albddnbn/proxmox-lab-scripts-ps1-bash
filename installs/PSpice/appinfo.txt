@@ -1,0 +1,10 @@
+UninstallString    : "C:\Program Files (x86)\InstallShield Installation Information\{2D444666-5875-4B28-9ED8-15F750802BF5}\setup.exe" -runfromtemp -l0x0409  Uninstall -removeonly
+UninstallSubkey    : {2D444666-5875-4B28-9ED8-15F750802BF5}
+InstallLocation    : C:\Program Files (x86)\Cadence\SPB_17.2
+ProductCode        : {2D444666-5875-4B28-9ED8-15F750802BF5}
+Is64BitApplication : False
+Publisher          : Cadence Design Systems, Inc.
+InstallDate        : 20231221
+DisplayVersion     : 17.20.025
+DisplayName        : Cadence OrCAD PSpice Designer Lite 17.2
+

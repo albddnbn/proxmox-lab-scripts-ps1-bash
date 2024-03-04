@@ -1,0 +1,1 @@
+https://downloads.arduino.cc/arduino-ide/arduino-ide_2.3.2_Windows_64bit.msi

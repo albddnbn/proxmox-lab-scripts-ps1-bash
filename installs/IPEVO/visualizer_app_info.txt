@@ -1,0 +1,11 @@
+UninstallString    : MsiExec.exe /X{ADE210EA-AFB3-425B-B4AE-235D57EB2BEC}
+UninstallSubkey    : {ADE210EA-AFB3-425B-B4AE-235D57EB2BEC}
+InstallLocation    :
+ProductCode        : {ADE210EA-AFB3-425B-B4AE-235D57EB2BEC}
+Is64BitApplication : False
+Publisher          : IPEVO Inc.
+InstallDate        : 20231224
+DisplayVersion     : 3.
+
+6.2.1
+DisplayName        : Visualizer 3.6.2.1

@@ -1,0 +1,9 @@
+;
+; Config file for application.  This is read by auto-updaters.
+;
+
+$PackageName = "QiMacros"
+$PackageVersion = "2012.01"
+$FileCheck = "%SystemDrive%\QiMacros"
+$VersionField = "BinFileVersion"
+$SetupCmd = "setup.cmd"

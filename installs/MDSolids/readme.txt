@@ -1,0 +1,1 @@
+.\setupmdsolids40.msi /quiet /norestart /l*v C:\Temp\MDsolidssetuplog.txt

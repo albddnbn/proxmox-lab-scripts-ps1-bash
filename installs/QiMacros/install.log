@@ -1,0 +1,644 @@
+***  Installation Started 12/21/2023 14:33  ***
+Title: QI Macros for Excel Installation
+Source: C:\Users\admin\AppData\Local\Temp\GLBB703.tmp
+File Copy: \Xlstart\QITemplates\ControlChartRules.xls
+File Copy: \Xlstart\QITemplates\ThreeL5W.xltx
+File Copy: \Xlstart\QITemplates\cChart.xltx
+File Copy: \Xlstart\QITemplates\gChart.xltx
+File Copy: \Xlstart\QITemplates\tChart.xltx
+File Copy: \Xlstart\QITemplates\HotellingT2.xltx
+File Copy: \Xlstart\QITemplates\MChart.xltx
+File Copy: \Xlstart\QITemplates\mindmap.xltx
+File Copy: \Xlstart\QITemplates\npChart.xltx
+File Copy: \Xlstart\QITemplates\pChart.xltm
+File Copy: \Xlstart\QITemplates\PreControl.xltx
+File Copy: \Xlstart\QITemplates\shortrun.xltx
+File Copy: \Xlstart\QITemplates\uChart.xltm
+File Copy: \Xlstart\QITemplates\cpuDashboard.xltm
+File Copy: \Xlstart\QITemplates\LJDashboard.xltm
+File Copy: \Xlstart\QITemplates\xlformulas.xltx
+File Copy: \Xlstart\QITemplates\XbarRDashboard.xltm
+File Copy: \Xlstart\QITemplates\XmRDashboard.xltm
+File Copy: \Xlstart\QITemplates\X-HiLo-R.xltx
+File Copy: \Xlstart\QITemplates\XmRChart.xltx
+File Copy: \Xlstart\QITemplates\XmR30kft.xltx
+File Copy: \Xlstart\QITemplates\ImRRChart.xltx
+File Copy: \Xlstart\QITemplates\XbarRChart.xltx
+File Copy: \Xlstart\QITemplates\XbarSChart.xltx
+File Copy: C:\Program Files\QIMacros\readme.htm
+File Copy: \Xlstart\QITemplates\yamazumi.xltm
+File Copy: \Xlstart\QITemplates\weblinks.xltx
+File Copy: \Xlstart\QITemplates\wbs.xltx
+File Copy: \Xlstart\QITemplates\Vocmtrx.xltx
+File Copy: \Xlstart\QITemplates\valustrm.xltx
+File Copy: \Xlstart\QITemplates\Valueadd.xltx
+File Copy: \Xlstart\QITemplates\Uncertainty.xltx
+File Copy: \Xlstart\QITemplates\Treemtrx.xltx
+File Copy: \Xlstart\QITemplates\Tranplan.xltx
+File Copy: \Xlstart\QITemplates\TOC.xltx
+File Copy: \Xlstart\QITemplates\tornado.xltm
+File Copy: \Xlstart\QITemplates\triz.xltx
+File Copy: \Xlstart\QITemplates\timetrak.xltm
+File Copy: \Xlstart\QITemplates\timevaluemap.xltm
+File Copy: \Xlstart\QITemplates\Targetmn.xltx
+File Copy: \Xlstart\QITemplates\targetXmR.xltx
+File Copy: \Xlstart\QITemplates\targetchart.xltx
+File Copy: \Xlstart\QITemplates\stemleaf.xltm
+File Copy: \Xlstart\QITemplates\stepplot.xltx
+File Copy: \Xlstart\QITemplates\stdwork.xltx
+File Copy: \Xlstart\QITemplates\SWOT.xltx
+File Copy: \Xlstart\QITemplates\Stakeholder.xltx
+File Copy: \Xlstart\QITemplates\speedometer.xltx
+File Copy: \Xlstart\QITemplates\SIPOC.xltx
+File Copy: \Xlstart\QITemplates\Scorecd.xltx
+File Copy: \Xlstart\QITemplates\scatter.xltx
+File Copy: \Xlstart\QITemplates\samplesz.xltx
+File Copy: \Xlstart\QITemplates\runchart.xltx
+File Copy: \Xlstart\QITemplates\RunChartDashboard.xltm
+File Copy: \Xlstart\QITemplates\roccurve.xltx
+File Copy: \Xlstart\QITemplates\ROIcalc.xltx
+File Copy: \Xlstart\QITemplates\Relation.xltx
+File Copy: \Xlstart\QITemplates\Riskmtrx.xltx
+File Copy: \Xlstart\QITemplates\Qistory.xltx
+File Copy: \Xlstart\QITemplates\Qfdhouse.xltx
+File Copy: \Xlstart\QITemplates\Pughmtrx.xltx
+File Copy: \Xlstart\QITemplates\Proportions.xltx
+File Copy: \Xlstart\QITemplates\Probplot.xltx
+File Copy: \Xlstart\QITemplates\PPAP.xltm
+File Copy: \Xlstart\QITemplates\PMformulas.xltx
+File Copy: \Xlstart\QITemplates\Pdpc.xltx
+File Copy: \Xlstart\QITemplates\pareto.xltm
+File Copy: \Xlstart\QITemplates\nonpara.xltm
+File Overwrite: \Xlstart\QITemplates\mindmap.xltx
+File Copy: \Xlstart\QITemplates\MAChart.xltx
+File Copy: \Xlstart\QITemplates\Measures.xltx
+File Copy: \Xlstart\QITemplates\Matrix.xltx
+File Copy: \Xlstart\QITemplates\levey.xltx
+File Copy: \Xlstart\QITemplates\lean.xltx
+File Copy: \Xlstart\QITemplates\ISHIKAWA.xltm
+File Copy: \Xlstart\QITemplates\Haccp.xltx
+File Copy: \Xlstart\QITemplates\Histogrm.xltm
+File Copy: \Xlstart\QITemplates\Gantt.xltx
+File Copy: \Xlstart\QITemplates\GAGER&R.xltx
+File Copy: \Xlstart\QITemplates\G8D.xltx
+File Copy: \Xlstart\QITemplates\Forcefld.xltx
+File Copy: \Xlstart\QITemplates\Fmea.xltx
+File Copy: \Xlstart\QITemplates\FPA.xltx
+File Copy: \Xlstart\QITemplates\fttest.xltx
+File Copy: \Xlstart\QITemplates\leanscorecard.xltm
+File Copy: \Xlstart\QITemplates\funnel.xltm
+File Copy: \Xlstart\QITemplates\Flowchrt.xltx
+File Copy: \Xlstart\QITemplates\Faultree.xltx
+File Copy: \Xlstart\QITemplates\EWMA.xltx
+File Copy: \Xlstart\QITemplates\EOQ.xltx
+File Copy: \Xlstart\QITemplates\Emea.xltx
+File Copy: \Xlstart\QITemplates\dpmocalc.xltx
+File Copy: \Xlstart\QITemplates\DOE.xltm
+File Copy: \Xlstart\QITemplates\Delta.xltx
+File Copy: \Xlstart\QITemplates\defecttracking.xltm
+File Copy: \Xlstart\QITemplates\cusum.xltx
+File Copy: \Xlstart\QITemplates\CpCpk.xltx
+File Copy: \Xlstart\QITemplates\Costofq.xltx
+File Copy: \Xlstart\QITemplates\costsquality.xltx
+File Copy: \Xlstart\QITemplates\Costbene.xltx
+File Copy: \Xlstart\QITemplates\Cntlplan.xltx
+File Copy: \Xlstart\QITemplates\Cmmatrix.xltx
+File Copy: \Xlstart\QITemplates\checklst.xltx
+File Copy: \Xlstart\QITemplates\Checksht.xltx
+File Copy: \Xlstart\QITemplates\Charter.xltx
+File Copy: \Xlstart\QITemplates\CEmatrix.xltx
+File Copy: \Xlstart\QITemplates\BoxWhisk.xltx
+File Copy: \Xlstart\QITemplates\blueocean.xltx
+File Copy: \Xlstart\QITemplates\Block.xltx
+File Copy: \Xlstart\QITemplates\Arrow.xltx
+File Copy: \Xlstart\QITemplates\APQPckls.xltx
+File Copy: \Xlstart\QITemplates\Affinity.xltx
+File Copy: \Xlstart\QITemplates\Action.xltx
+File Copy: \Xlstart\QITemplates\A3Report.xltx
+File Copy: \Xlstart\qimacros.xlam
+File Copy: C:\Program Files\QIMacros\TestData\ControlChartRules.xls
+File Copy: C:\Program Files\QIMacros\TestData\ANSI-ASQC B1 B2 B3 1996.xlsx
+File Copy: C:\Program Files\QIMacros\TestData\anova.xlsx
+File Copy: C:\Program Files\QIMacros\TestData\AIAG SPC.xlsx
+File Copy: C:\Program Files\QIMacros\TestData\ANOM.xlsx
+File Copy: C:\Program Files\QIMacros\TestData\BoxCox.xlsx
+File Copy: C:\Program Files\QIMacros\TestData\BoxWhisk.xlsx
+File Copy: C:\Program Files\QIMacros\TestData\cChart.xlsx
+File Copy: C:\Program Files\QIMacros\TestData\Cusum.xlsx
+File Copy: C:\Program Files\QIMacros\TestData\DOE-4-8.xlsx
+File Copy: C:\Program Files\QIMacros\TestData\Dot Plot.xlsx
+File Copy: C:\Program Files\QIMacros\TestData\EWMA.xlsx
+File Copy: C:\Program Files\QIMacros\TestData\Fistogrm.xlsx
+File Copy: C:\Program Files\QIMacros\TestData\Healthcare Data Guide.xlsx
+File Copy: C:\Program Files\QIMacros\TestData\Montgomery Intro to SPC 7th.xlsx
+File Copy: C:\Program Files\QIMacros\TestData\Breyfogle Implementing Six Sigma.xlsx
+File Copy: C:\Program Files\QIMacros\TestData\Pyzdek Six Sigma Handbook 4th.xlsx
+File Copy: C:\Program Files\QIMacros\TestData\QIMacros-Tutorial.xlsx
+File Copy: C:\Program Files\QIMacros\TestData\Healthcare SPC.xlsx
+File Copy: C:\Program Files\QIMacros\TestData\Healthcare SPC2.xls
+File Copy: C:\Program Files\QIMacros\TestData\Histogrm.xlsx
+File Copy: C:\Program Files\QIMacros\TestData\HotellingT2.xlsx
+File Copy: C:\Program Files\QIMacros\TestData\LeveyJennings.xlsx
+File Copy: C:\Program Files\QIMacros\TestData\line-run.xlsx
+File Copy: C:\Program Files\QIMacros\TestData\Matrix Plot.xlsx
+File Copy: C:\Program Files\QIMacros\TestData\Moving Average.xlsx
+File Copy: C:\Program Files\QIMacros\TestData\Multivari.xlsx
+File Copy: C:\Program Files\QIMacros\TestData\Multivariate.xlsx
+File Copy: C:\Program Files\QIMacros\TestData\npChart.xlsx
+File Copy: C:\Program Files\QIMacros\TestData\pie-bar.xlsx
+File Copy: C:\Program Files\QIMacros\TestData\pareto.xlsx
+File Copy: C:\Program Files\QIMacros\TestData\datamining.xlsx
+File Copy: C:\Program Files\QIMacros\TestData\pivottable.xlsx
+File Copy: C:\Program Files\QIMacros\TestData\pChart.xlsx
+File Copy: C:\Program Files\QIMacros\TestData\Scatter.xlsx
+File Copy: C:\Program Files\QIMacros\TestData\SPC Simplified.xlsx
+File Copy: C:\Program Files\QIMacros\TestData\uChart.xlsx
+File Copy: C:\Program Files\QIMacros\TestData\XbarR.xlsx
+File Copy: C:\Program Files\QIMacros\TestData\XbarS.xlsx
+File Copy: C:\Program Files\QIMacros\TestData\XMedianR.xlsx
+File Copy: C:\Program Files\QIMacros\TestData\XmRTrend.xlsx
+File Copy: C:\Program Files\QIMacros\TestData\XmRChart.xlsx
+Made Dir: C:\Users\admin\Documents\QI Macros Test Data
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\ControlChartRules.xls
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\anova.xlsx
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\ANSI-ASQC B1 B2 B3 1996.xlsx
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\AIAG SPC.xlsx
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\ANOM.xlsx
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\BoxCox.xlsx
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\BoxWhisk.xlsx
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\cChart.xlsx
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\Cusum.xlsx
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\DOE-4-8.xlsx
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\Dot Plot.xlsx
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\EWMA.xlsx
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\Fistogrm.xlsx
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\QIMacros-Tutorial.xlsx
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\Healthcare Data Guide.xlsx
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\Montgomery Intro to SPC 7th.xlsx
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\Pyzdek Six Sigma Handbook 4th.xlsx
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\Healthcare SPC.xlsx
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\Healthcare SPC2.xls
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\Histogrm.xlsx
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\HotellingT2.xlsx
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\LeveyJennings.xlsx
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\line-run.xlsx
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\Matrix Plot.xlsx
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\Moving Average.xlsx
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\Multivari.xlsx
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\npChart.xlsx
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\pie-bar.xlsx
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\pareto.xlsx
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\pChart.xlsx
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\pivottable.xlsx
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\Scatter.xlsx
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\SPC Simplified.xlsx
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\uChart.xlsx
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\XMedianR.xlsx
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\XbarR.xlsx
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\XbarS.xlsx
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\XmRTrend.xlsx
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\XmRChart.xlsx
+Shell Link: c:\Windows\Application Data\Microsoft\Templates\QIMacros.lnk
+Could not execute the external program Excel.exe.
+User Rights: Admin
+***  Installation Started 12/21/2023 15:23  ***
+Title: QI Macros for Excel Installation
+Source: C:\Users\admin\AppData\Local\Temp\GLB4B5C.tmp
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\ControlChartRules.xls
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\ThreeL5W.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\cChart.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\gChart.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\tChart.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\HotellingT2.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\MChart.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\mindmap.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\npChart.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\pChart.xltm
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\PreControl.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\shortrun.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\uChart.xltm
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\cpuDashboard.xltm
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\LJDashboard.xltm
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\xlformulas.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\XbarRDashboard.xltm
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\XmRDashboard.xltm
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\X-HiLo-R.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\XmRChart.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\XmR30kft.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\ImRRChart.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\XbarRChart.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\XbarSChart.xltx
+File Overwrite: C:\Program Files\QIMacros\readme.htm
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\yamazumi.xltm
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\weblinks.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\wbs.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\Vocmtrx.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\valustrm.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\Valueadd.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\Uncertainty.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\Treemtrx.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\Tranplan.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\TOC.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\tornado.xltm
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\triz.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\timetrak.xltm
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\timevaluemap.xltm
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\Targetmn.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\targetXmR.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\targetchart.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\stemleaf.xltm
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\stepplot.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\stdwork.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\SWOT.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\Stakeholder.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\speedometer.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\SIPOC.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\Scorecd.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\scatter.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\samplesz.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\runchart.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\RunChartDashboard.xltm
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\roccurve.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\ROIcalc.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\Relation.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\Riskmtrx.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\Qistory.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\Qfdhouse.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\Pughmtrx.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\Proportions.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\Probplot.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\PPAP.xltm
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\PMformulas.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\Pdpc.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\pareto.xltm
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\nonpara.xltm
+File Overwrite: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\mindmap.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\MAChart.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\Measures.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\Matrix.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\levey.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\lean.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\ISHIKAWA.xltm
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\Haccp.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\Histogrm.xltm
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\Gantt.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\GAGER&R.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\G8D.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\Forcefld.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\Fmea.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\FPA.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\fttest.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\leanscorecard.xltm
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\funnel.xltm
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\Flowchrt.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\Faultree.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\EWMA.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\EOQ.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\Emea.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\dpmocalc.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\DOE.xltm
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\Delta.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\defecttracking.xltm
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\cusum.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\CpCpk.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\Costofq.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\costsquality.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\Costbene.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\Cntlplan.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\Cmmatrix.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\checklst.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\Checksht.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\Charter.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\CEmatrix.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\BoxWhisk.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\blueocean.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\Block.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\Arrow.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\APQPckls.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\Affinity.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\Action.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\QITemplates\A3Report.xltx
+File Copy: C:\Program Files\Microsoft Office\root\Office16\XLSTART\qimacros.xlam
+File Overwrite: C:\Program Files\QIMacros\TestData\ControlChartRules.xls
+File Overwrite: C:\Program Files\QIMacros\TestData\ANSI-ASQC B1 B2 B3 1996.xlsx
+File Overwrite: C:\Program Files\QIMacros\TestData\anova.xlsx
+File Overwrite: C:\Program Files\QIMacros\TestData\AIAG SPC.xlsx
+File Overwrite: C:\Program Files\QIMacros\TestData\ANOM.xlsx
+File Overwrite: C:\Program Files\QIMacros\TestData\BoxCox.xlsx
+File Overwrite: C:\Program Files\QIMacros\TestData\BoxWhisk.xlsx
+File Overwrite: C:\Program Files\QIMacros\TestData\cChart.xlsx
+File Overwrite: C:\Program Files\QIMacros\TestData\Cusum.xlsx
+File Overwrite: C:\Program Files\QIMacros\TestData\DOE-4-8.xlsx
+File Overwrite: C:\Program Files\QIMacros\TestData\Dot Plot.xlsx
+File Overwrite: C:\Program Files\QIMacros\TestData\EWMA.xlsx
+File Overwrite: C:\Program Files\QIMacros\TestData\Fistogrm.xlsx
+File Overwrite: C:\Program Files\QIMacros\TestData\Healthcare Data Guide.xlsx
+File Overwrite: C:\Program Files\QIMacros\TestData\Montgomery Intro to SPC 7th.xlsx
+File Overwrite: C:\Program Files\QIMacros\TestData\Breyfogle Implementing Six Sigma.xlsx
+File Overwrite: C:\Program Files\QIMacros\TestData\Pyzdek Six Sigma Handbook 4th.xlsx
+File Overwrite: C:\Program Files\QIMacros\TestData\QIMacros-Tutorial.xlsx
+File Overwrite: C:\Program Files\QIMacros\TestData\Healthcare SPC.xlsx
+File Overwrite: C:\Program Files\QIMacros\TestData\Healthcare SPC2.xls
+File Overwrite: C:\Program Files\QIMacros\TestData\Histogrm.xlsx
+File Overwrite: C:\Program Files\QIMacros\TestData\HotellingT2.xlsx
+File Overwrite: C:\Program Files\QIMacros\TestData\LeveyJennings.xlsx
+File Overwrite: C:\Program Files\QIMacros\TestData\line-run.xlsx
+File Overwrite: C:\Program Files\QIMacros\TestData\Matrix Plot.xlsx
+File Overwrite: C:\Program Files\QIMacros\TestData\Moving Average.xlsx
+File Overwrite: C:\Program Files\QIMacros\TestData\Multivari.xlsx
+File Overwrite: C:\Program Files\QIMacros\TestData\Multivariate.xlsx
+File Overwrite: C:\Program Files\QIMacros\TestData\npChart.xlsx
+File Overwrite: C:\Program Files\QIMacros\TestData\pie-bar.xlsx
+File Overwrite: C:\Program Files\QIMacros\TestData\pareto.xlsx
+File Overwrite: C:\Program Files\QIMacros\TestData\datamining.xlsx
+File Overwrite: C:\Program Files\QIMacros\TestData\pivottable.xlsx
+File Overwrite: C:\Program Files\QIMacros\TestData\pChart.xlsx
+File Overwrite: C:\Program Files\QIMacros\TestData\Scatter.xlsx
+File Overwrite: C:\Program Files\QIMacros\TestData\SPC Simplified.xlsx
+File Overwrite: C:\Program Files\QIMacros\TestData\uChart.xlsx
+File Overwrite: C:\Program Files\QIMacros\TestData\XbarR.xlsx
+File Overwrite: C:\Program Files\QIMacros\TestData\XbarS.xlsx
+File Overwrite: C:\Program Files\QIMacros\TestData\XMedianR.xlsx
+File Overwrite: C:\Program Files\QIMacros\TestData\XmRTrend.xlsx
+File Overwrite: C:\Program Files\QIMacros\TestData\XmRChart.xlsx
+File Overwrite: C:\Users\admin\Documents\QI Macros Test Data\ControlChartRules.xls
+File Overwrite: C:\Users\admin\Documents\QI Macros Test Data\anova.xlsx
+File Overwrite: C:\Users\admin\Documents\QI Macros Test Data\ANSI-ASQC B1 B2 B3 1996.xlsx
+File Overwrite: C:\Users\admin\Documents\QI Macros Test Data\AIAG SPC.xlsx
+File Overwrite: C:\Users\admin\Documents\QI Macros Test Data\ANOM.xlsx
+File Overwrite: C:\Users\admin\Documents\QI Macros Test Data\BoxCox.xlsx
+File Overwrite: C:\Users\admin\Documents\QI Macros Test Data\BoxWhisk.xlsx
+File Overwrite: C:\Users\admin\Documents\QI Macros Test Data\cChart.xlsx
+File Overwrite: C:\Users\admin\Documents\QI Macros Test Data\Cusum.xlsx
+File Overwrite: C:\Users\admin\Documents\QI Macros Test Data\DOE-4-8.xlsx
+File Overwrite: C:\Users\admin\Documents\QI Macros Test Data\Dot Plot.xlsx
+File Overwrite: C:\Users\admin\Documents\QI Macros Test Data\EWMA.xlsx
+File Overwrite: C:\Users\admin\Documents\QI Macros Test Data\Fistogrm.xlsx
+File Overwrite: C:\Users\admin\Documents\QI Macros Test Data\QIMacros-Tutorial.xlsx
+File Overwrite: C:\Users\admin\Documents\QI Macros Test Data\Healthcare Data Guide.xlsx
+File Overwrite: C:\Users\admin\Documents\QI Macros Test Data\Montgomery Intro to SPC 7th.xlsx
+File Overwrite: C:\Users\admin\Documents\QI Macros Test Data\Pyzdek Six Sigma Handbook 4th.xlsx
+File Overwrite: C:\Users\admin\Documents\QI Macros Test Data\Healthcare SPC.xlsx
+File Overwrite: C:\Users\admin\Documents\QI Macros Test Data\Healthcare SPC2.xls
+File Overwrite: C:\Users\admin\Documents\QI Macros Test Data\Histogrm.xlsx
+File Overwrite: C:\Users\admin\Documents\QI Macros Test Data\HotellingT2.xlsx
+File Overwrite: C:\Users\admin\Documents\QI Macros Test Data\LeveyJennings.xlsx
+File Overwrite: C:\Users\admin\Documents\QI Macros Test Data\line-run.xlsx
+File Overwrite: C:\Users\admin\Documents\QI Macros Test Data\Matrix Plot.xlsx
+File Overwrite: C:\Users\admin\Documents\QI Macros Test Data\Moving Average.xlsx
+File Overwrite: C:\Users\admin\Documents\QI Macros Test Data\Multivari.xlsx
+File Overwrite: C:\Users\admin\Documents\QI Macros Test Data\npChart.xlsx
+File Overwrite: C:\Users\admin\Documents\QI Macros Test Data\pie-bar.xlsx
+File Overwrite: C:\Users\admin\Documents\QI Macros Test Data\pareto.xlsx
+File Overwrite: C:\Users\admin\Documents\QI Macros Test Data\pChart.xlsx
+File Overwrite: C:\Users\admin\Documents\QI Macros Test Data\pivottable.xlsx
+File Overwrite: C:\Users\admin\Documents\QI Macros Test Data\Scatter.xlsx
+File Overwrite: C:\Users\admin\Documents\QI Macros Test Data\SPC Simplified.xlsx
+File Overwrite: C:\Users\admin\Documents\QI Macros Test Data\uChart.xlsx
+File Overwrite: C:\Users\admin\Documents\QI Macros Test Data\XMedianR.xlsx
+File Overwrite: C:\Users\admin\Documents\QI Macros Test Data\XbarR.xlsx
+File Overwrite: C:\Users\admin\Documents\QI Macros Test Data\XbarS.xlsx
+File Overwrite: C:\Users\admin\Documents\QI Macros Test Data\XmRTrend.xlsx
+File Overwrite: C:\Users\admin\Documents\QI Macros Test Data\XmRChart.xlsx
+Shell Link: c:\Windows\Application Data\Microsoft\Templates\QIMacros.lnk
+RegDB Key: Software\Microsoft\Windows\CurrentVersion\Uninstall\QI Macros for Excel
+RegDB Val: 1
+RegDB Name: NoRemove
+RegDB Root: 2
+RegDB Key: Software\Microsoft\Windows\CurrentVersion\Uninstall\QI Macros for Excel
+RegDB Val: 2017.04
+RegDB Name: DisplayVersion
+RegDB Root: 2
+RegDB Key: Software\Microsoft\Windows\CurrentVersion\Uninstall\QI Macros for Excel
+RegDB Val: www.qimacros.com/training/videos/
+RegDB Name: HelpLink
+RegDB Root: 2
+RegDB Key: Software\Microsoft\Windows\CurrentVersion\Uninstall\QI Macros for Excel
+RegDB Val: 303 756 8144
+RegDB Name: HelpTelephone
+RegDB Root: 2
+RegDB Key: Software\Microsoft\Windows\CurrentVersion\Uninstall\QI Macros for Excel
+RegDB Val: KnowWare International Inc
+RegDB Name: Publisher
+RegDB Root: 2
+RegDB Key: Software\Microsoft\Windows\CurrentVersion\Uninstall\QI Macros for Excel
+RegDB Val: www.qimacros.com/support
+RegDB Name: URLInfoAbout
+RegDB Root: 2
+RegDB Key: Software\Microsoft\Windows\CurrentVersion\Uninstall\QI Macros for Excel
+RegDB Val: Jay Arthur
+RegDB Name: Contact
+RegDB Root: 2
+User Rights: Admin
+***  Installation Started 12/21/2023 16:00  ***
+Title: QI Macros SPC Addin for Excel Installation
+Source: C:\Users\admin\AppData\Local\Temp\GLB11C8.tmp
+File Copy: \UNWISE.EXE
+RegDB Key: Software\Microsoft\Windows\CurrentVersion\Uninstall\The QI Macros for Excel
+RegDB Val: The QI Macros for Excel
+RegDB Name: DisplayName
+RegDB Root: 2
+RegDB Key: Software\Microsoft\Windows\CurrentVersion\Uninstall\The QI Macros for Excel
+RegDB Val: \UNWISE.EXE \INSTALL.LOG
+RegDB Name: UninstallString
+RegDB Root: 2
+File Copy: C:\qimacros\TestData\ControlChartRules.xls
+File Overwrite: C:\Users\admin\Documents\QI Macros Test Data\ControlChartRules.xls
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\anova.xls
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\SPC Simplified.xls
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\ANSI-ASQC B1 B2 B3 1996.xls
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\AIAG SPC.xls
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\ANOM.xls
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\pivottable.xls
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\Healthcare SPC.xls
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\DOE-4-8.xls
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\Moving Average.xls
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\Multivari.xls
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\HotellingT2.xls
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\line-run.xls
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\pie-bar.xls
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\pareto.xls
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\BoxCox.xls
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\BoxWhisk.xls
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\Cusum.xls
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\Dot Plot.xls
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\XmRTrend.xls
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\XmRChart.xls
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\pChart.xls
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\npChart.xls
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\mChart.xls
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\LeveyJennings.xls
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\Histogrm.xls
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\cChart.xls
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\Matrix Plot.xls
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\Scatter.xls
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\Fistogrm.xls
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\EWMA.xls
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\XMedianR.xls
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\XbarR.xls
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\XbarS.xls
+File Copy: C:\Users\admin\Documents\QI Macros Test Data\uChart.xls
+File Overwrite: C:\qimacros\TestData\ControlChartRules.xls
+File Copy: C:\qimacros\TestData\anova.xls
+File Copy: C:\qimacros\TestData\ANSI-ASQC B1 B2 B3 1996.xls
+File Copy: C:\qimacros\TestData\AIAG SPC.xls
+File Copy: C:\qimacros\TestData\ANOM.xls
+File Copy: C:\qimacros\TestData\pivottable.xls
+File Copy: C:\qimacros\TestData\Healthcare SPC.xls
+File Copy: C:\qimacros\TestData\DOE-4-8.xls
+File Copy: C:\qimacros\TestData\Moving Average.xls
+File Copy: C:\qimacros\TestData\Multivari.xls
+File Copy: C:\qimacros\TestData\HotellingT2.xls
+File Copy: C:\qimacros\TestData\line-run.xls
+File Copy: C:\qimacros\TestData\pie-bar.xls
+File Copy: C:\qimacros\TestData\pareto.xls
+File Copy: C:\qimacros\TestData\BoxCox.xls
+File Copy: C:\qimacros\TestData\BoxWhisk.xls
+File Copy: C:\qimacros\TestData\Cusum.xls
+File Copy: C:\qimacros\TestData\Dot Plot.xls
+File Copy: C:\qimacros\TestData\XmRTrend.xls
+File Copy: C:\qimacros\TestData\XmRChart.xls
+File Copy: C:\qimacros\TestData\pChart.xls
+File Copy: C:\qimacros\TestData\npChart.xls
+File Copy: C:\qimacros\TestData\LeveyJennings.xls
+File Copy: C:\qimacros\TestData\Histogrm.xls
+File Copy: C:\qimacros\TestData\cChart.xls
+File Copy: C:\qimacros\TestData\Matrix Plot.xls
+File Copy: C:\qimacros\TestData\Scatter.xls
+File Copy: C:\qimacros\TestData\Fistogrm.xls
+File Copy: C:\qimacros\TestData\EWMA.xls
+File Copy: C:\qimacros\TestData\XMedianR.xls
+File Copy: C:\qimacros\TestData\XbarR.xls
+File Copy: C:\qimacros\TestData\XbarS.xls
+File Copy: C:\qimacros\TestData\uChart.xls
+File Copy: \Xlstart\QITemplates\QIMacros.chm
+File Copy: \Xlstart\QITemplates\cChart.xlt
+File Copy: \Xlstart\QITemplates\gChart.xlt
+File Copy: \Xlstart\QITemplates\tChart.xlt
+File Copy: \Xlstart\QITemplates\HotellingT2.xlt
+File Copy: \Xlstart\QITemplates\MChart.xlt
+File Copy: \Xlstart\QITemplates\mindmap.xlt
+File Copy: \Xlstart\QITemplates\npChart.xlt
+File Copy: \Xlstart\QITemplates\pChart.xlt
+File Copy: \Xlstart\QITemplates\PreControl.xlt
+File Copy: \Xlstart\QITemplates\uChart.xlt
+File Copy: \Xlstart\QITemplates\cpuDashboard.xlt
+File Copy: \Xlstart\QITemplates\XbarRDashboard.xlt
+File Copy: \Xlstart\QITemplates\XmRDashboard.xlt
+File Copy: \Xlstart\QITemplates\X-HiLo-R.xlt
+File Copy: \Xlstart\QITemplates\XmRChart.xlt
+File Copy: \Xlstart\QITemplates\XmR30kft.xlt
+File Copy: \Xlstart\QITemplates\ImRRChart.xlt
+File Copy: \Xlstart\QITemplates\XbarRChart.xlt
+File Copy: \Xlstart\QITemplates\XbarSChart.xlt
+File Copy: C:\qimacros\readme.htm
+File Copy: \Xlstart\QITemplates\yamazumi.xlt
+File Copy: \Xlstart\QITemplates\weblinks.xlt
+File Copy: \Xlstart\QITemplates\wbs.xlt
+File Copy: \Xlstart\QITemplates\Vocmtrx.xlt
+File Copy: \Xlstart\QITemplates\valustrm.xlt
+File Copy: \Xlstart\QITemplates\Valueadd.xlt
+File Copy: \Xlstart\QITemplates\Uncertainty.xlt
+File Copy: \Xlstart\QITemplates\Treemtrx.xlt
+File Copy: \Xlstart\QITemplates\Tranplan.xlt
+File Copy: \Xlstart\QITemplates\TOC.xlt
+File Copy: \Xlstart\QITemplates\tornado.xlt
+File Copy: \Xlstart\QITemplates\timetrak.xlt
+File Copy: \Xlstart\QITemplates\Targetmn.xlt
+File Copy: \Xlstart\QITemplates\targetXmR.xlt
+File Copy: \Xlstart\QITemplates\targetchart.xlt
+File Copy: \Xlstart\QITemplates\stemleaf.xlt
+File Copy: \Xlstart\QITemplates\SWOT.xlt
+File Copy: \Xlstart\QITemplates\Stakeholder.xlt
+File Copy: \Xlstart\QITemplates\speedometer.xlt
+File Copy: \Xlstart\QITemplates\SIPOC.xlt
+File Copy: \Xlstart\QITemplates\Scorecd.xlt
+File Copy: \Xlstart\QITemplates\scatter.xlt
+File Copy: \Xlstart\QITemplates\samplesz.xlt
+File Copy: \Xlstart\QITemplates\runchart.xlt
+File Copy: \Xlstart\QITemplates\roccurve.xlt
+File Copy: \Xlstart\QITemplates\ROIcalc.xlt
+File Copy: \Xlstart\QITemplates\Relation.xlt
+File Copy: \Xlstart\QITemplates\Riskmtrx.xlt
+File Copy: \Xlstart\QITemplates\Qistory.xlt
+File Copy: \Xlstart\QITemplates\Qfdhouse.xlt
+File Copy: \Xlstart\QITemplates\Pughmtrx.xlt
+File Copy: \Xlstart\QITemplates\Proportions.xlt
+File Copy: \Xlstart\QITemplates\Probplot.xlt
+File Copy: \Xlstart\QITemplates\PPAP.xlt
+File Copy: \Xlstart\QITemplates\PMformulas.xlt
+File Copy: \Xlstart\QITemplates\Pdpc.xlt
+File Copy: \Xlstart\QITemplates\pareto.xlt
+File Copy: \Xlstart\QITemplates\nonpara.xlt
+File Overwrite: \Xlstart\QITemplates\mindmap.xlt
+File Copy: \Xlstart\QITemplates\MAChart.xlt
+File Copy: \Xlstart\QITemplates\Measures.xlt
+File Copy: \Xlstart\QITemplates\Matrix.xlt
+File Copy: \Xlstart\QITemplates\levey.xlt
+File Copy: \Xlstart\QITemplates\lean.xlt
+File Copy: \Xlstart\QITemplates\ISHIKAWA.xlt
+File Copy: \Xlstart\QITemplates\Haccp.xlt
+File Copy: \Xlstart\QITemplates\Histogrm.xlt
+File Copy: \Xlstart\QITemplates\Gantt.xlt
+File Copy: \Xlstart\QITemplates\GAGER&R.xlt
+File Copy: \Xlstart\QITemplates\G8D.xlt
+File Copy: \Xlstart\QITemplates\Forcefld.xlt
+File Copy: \Xlstart\QITemplates\Fmea.xlt
+File Copy: \Xlstart\QITemplates\FPA.xlt
+File Copy: \Xlstart\QITemplates\leanscorecard.xlt
+File Copy: \Xlstart\QITemplates\funnel.xlt
+File Copy: \Xlstart\QITemplates\Flowchrt.xlt
+File Copy: \Xlstart\QITemplates\Faultree.xlt
+File Copy: \Xlstart\QITemplates\EWMA.xlt
+File Copy: \Xlstart\QITemplates\Emea.xlt
+File Copy: \Xlstart\QITemplates\dpmocalc.xlt
+File Copy: \Xlstart\QITemplates\DOE.xlt
+File Copy: \Xlstart\QITemplates\Delta.xlt
+File Copy: \Xlstart\QITemplates\cusum.xlt
+File Copy: \Xlstart\QITemplates\CpCpk.xlt
+File Copy: \Xlstart\QITemplates\Costofq.xlt
+File Copy: \Xlstart\QITemplates\costsquality.xlt
+File Copy: \Xlstart\QITemplates\Costbene.xlt
+File Copy: \Xlstart\QITemplates\Cntlplan.xlt
+File Copy: \Xlstart\QITemplates\Cmmatrix.xlt
+File Copy: \Xlstart\QITemplates\checklst.xlt
+File Copy: \Xlstart\QITemplates\Checksht.xlt
+File Copy: \Xlstart\QITemplates\Charter.xlt
+File Copy: \Xlstart\QITemplates\CEmatrix.xlt
+File Copy: \Xlstart\QITemplates\BoxWhisk.xlt
+File Copy: \Xlstart\QITemplates\blueocean.xlt
+File Copy: \Xlstart\QITemplates\Block.xlt
+File Copy: \Xlstart\QITemplates\Arrow.xlt
+File Copy: \Xlstart\QITemplates\APQPckls.xlt
+File Copy: \Xlstart\QITemplates\Affinity.xlt
+File Copy: \Xlstart\QITemplates\Action.xlt
+File Copy: \Xlstart\QITemplates\A3Report.xlt
+File Copy: \Xlstart\qimacros.xla
+File Copy: \Xlstart\QIMacros2010menu.xlam
+File Copy: \Xlstart\QITemplates\QIMacros2003menu.xlam
+Shell Link: c:\Windows\Application Data\Microsoft\Templates\QIMacros.lnk
+RegDB Key: Software\Microsoft\Windows\CurrentVersion\Uninstall\The QI Macros for Excel
+RegDB Val: 1
+RegDB Name: NoRemove
+RegDB Root: 2
+RegDB Key: Software\Microsoft\Windows\CurrentVersion\Uninstall\The QI Macros for Excel
+RegDB Val: Excel 2000-2010
+RegDB Name: DisplayVersion
+RegDB Root: 2
+RegDB Key: Software\Microsoft\Windows\CurrentVersion\Uninstall\The QI Macros for Excel
+RegDB Val: 303 756 9133
+RegDB Name: HelpTelephone
+RegDB Root: 2
+RegDB Key: Software\Microsoft\Windows\CurrentVersion\Uninstall\The QI Macros for Excel
+RegDB Val: KnowWare International Inc
+RegDB Name: Publisher
+RegDB Root: 2
+RegDB Key: Software\Microsoft\Windows\CurrentVersion\Uninstall\The QI Macros for Excel
+RegDB Val: www.qimacros.com/techsupport.html
+RegDB Name: URLInfoAbout
+RegDB Root: 2
+RegDB Key: Software\Microsoft\Windows\CurrentVersion\Uninstall\The QI Macros for Excel
+RegDB Val: Jay Arthur
+RegDB Name: Contact
+RegDB Root: 2
+User Rights: Admin

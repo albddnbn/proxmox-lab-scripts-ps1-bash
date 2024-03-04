@@ -1,0 +1,44 @@
+Registry keys that DEFINITELY have to be removed:
+
+[-HKEY_CURRENT_USER\SOFTWARE\Cadence Design Systems]
+
+[-HKEY_LOCAL_MACHINE\Software\Classes\OrCADCapture]
+
+[-HKEY_LOCAL_MACHINE\Software\Classes\OrCADPSpiceAA.aap]
+
+[-HKEY_LOCAL_MACHINE\Software\Classes\OrCADPSpiceAD]
+
+[-HKEY_LOCAL_MACHINE\Software\Classes\OrCADPSpiceAD.cir]
+
+[-HKEY_LOCAL_MACHINE\Software\Classes\OrCADPSpiceAD.net]
+
+[-HKEY_LOCAL_MACHINE\Software\Classes\OrCADPSpiceAD.out]
+
+[-HKEY_LOCAL_MACHINE\Software\Classes\OrCADPSpiceAD.sim]
+
+[-HKEY_LOCAL_MACHINE\Software\Classes\OrCADPSpiceADModelLib]
+
+[-HKEY_LOCAL_MACHINE\Software\Classes\OrCADPSpiceADStim]
+
+[-HKEY_LOCAL_MACHINE\Software\WOW6432Node\Cadence Design Systems, Inc.]
+
+[-HKEY_LOCAL_MACHINE\Software\WOW6432Node\Cadence Design Systems\SPB 17.2]
+
+[-HKEY_LOCAL_MACHINE\Software\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{2D444666-5875-4B28-9ED8-15F750802BF5}]
+
+
+Unsure whether these keys have to be removed:
+
+[-HKEY_LOCAL_MACHINE\Software\ODBC\ODBC.INI\cdn_psp_db172]
+
+[-HKEY_LOCAL_MACHINE\Software\ODBC\ODBC.INI\magdesDemo1720]
+
+[-HKEY_LOCAL_MACHINE\Software\ODBC\ODBC.INI\ODBC Data Sources]
+
+
+Then, delete the GUID folder from:
+C:\Program Files (x86)\InstallShield Installation Information\{2D444666-5875-4B28-9ED8-15F750802BF5}
+
+Then, delete the following folders:
+C:\SPB_Data-Silent
+C:\Program Files (x86)\Cadence\SPB_17.2

@@ -1,0 +1,9 @@
+UninstallString    : MsiExec.exe /X{DF447828-9369-4B73-AC96-983B92631FAD}
+UninstallSubkey    : {DF447828-9369-4B73-AC96-983B92631FAD}
+InstallLocation    :
+ProductCode        : {DF447828-9369-4B73-AC96-983B92631FAD}
+Is64BitApplication : True
+Publisher          : Zoom
+InstallDate        : 20231224
+DisplayVersion     : 5.17.28375
+DisplayName        : Zoom (64-bit)

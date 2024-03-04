@@ -1,0 +1,9 @@
+UninstallString    : MsiExec.exe /X{DDD54951-8EB5-3BD6-9EA5-CC3BA28A88F6}
+UninstallSubkey    : {DDD54951-8EB5-3BD6-9EA5-CC3BA28A88F6}
+InstallLocation    : C:\Users\abudd\AppData\Local\SceneBuilder\
+ProductCode        : {DDD54951-8EB5-3BD6-9EA5-CC3BA28A88F6}
+Is64BitApplication : True
+Publisher          : Gluon
+InstallDate        : 20231224
+DisplayVersion     : 21.0.0
+DisplayName        : SceneBuilder

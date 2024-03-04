@@ -1,0 +1,7 @@
+HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\CodeBlocks
+DisplayName     : CodeBlocks
+DisplayVersion  : 20.03
+Publisher       : The Code::Blocks Team
+UninstallString : C:\Program Files\CodeBlocks\uninstall.exe
+
+SCRIPT SOURCE: https://silentinstallhq.com/codeblocks-install-and-uninstall-powershell/

@@ -1,0 +1,10 @@
+InstallSource      : C:\Users\abudd\Documents\GitHub\scripted-installations\LAS_EZ\Files\LAS EZ\
+UninstallString    : MsiExec.exe /X{3EC161FB-5734-44C0-AC2B-6C1A5AA6E04D}
+UninstallSubkey    : {3EC161FB-5734-44C0-AC2B-6C1A5AA6E04D}
+InstallLocation    : C:\Program Files (x86)\Leica Microsystems\LAS EZ\
+ProductCode        : {3EC161FB-5734-44C0-AC2B-6C1A5AA6E04D}
+Is64BitApplication : False
+Publisher          : Leica Microsystems
+InstallDate        : 20240302
+DisplayVersion     : 3.4.0.272
+DisplayName        : LAS EZ 3.4.0

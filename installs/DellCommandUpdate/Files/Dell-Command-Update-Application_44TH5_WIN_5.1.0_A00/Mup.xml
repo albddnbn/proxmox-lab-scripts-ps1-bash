@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<MUPDefinition xsi:schemaLocation="http://schemas.dell.com/openmanage/cm/2/0/mupdefinition.xsd mupdefinition.xsd" xmlns="http://schemas.dell.com/openmanage/cm/2/0/mupdefinition.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <packageinformation>
+    <name>Dell Command | Update</name>
+    <version>5.1.0</version>
+    <installertype>custom</installertype>
+    <packagegrouping>single_package</packagegrouping>
+    <packagingtype>executable</packagingtype>
+    <releasetype>APAC</releasetype>
+    <mupspecificationversion>2.4.3</mupspecificationversion>
+    <supportedoperatingsystems>
+      <osidentifier name="Vista" architecture="x86" />
+      <osidentifier name="Vista" architecture="x64" />
+      <osidentifier name="Windows7" architecture="x86" />
+      <osidentifier name="Windows7" architecture="x64" />
+	  <osidentifier name="Windows8" architecture="x86" />
+	  <osidentifier name="Windows8" architecture="x64" />
+	  <osidentifier name="Windows8.1" architecture="x86" />
+	  <osidentifier name="Windows8.1" architecture="x64" />
+	  <osidentifier name="Windows10" architecture="x86" />
+	  <osidentifier name="Windows10" architecture="x64" />
+    </supportedoperatingsystems>
+	<content>
+                <Device componentID="23400">
+                    <Image type="APAC" version="5.1.0">
+                        <file/>
+                    </Image>
+                </Device>
+	</content>
+  </packageinformation>
+  <executable>
+    <executablename>DCU_Setup_5_1_0.exe</executablename>
+  </executable>
+  <behaviors>
+    <!-- Delete the behavior element for any unsupported behavior -->
+    <behavior name="attended">
+	  <vendoroption>
+        <optionvalue switch="/" requiresvalue="false">clone_wait</optionvalue>
+      </vendoroption>
+	</behavior>
+    <behavior name="unattended">
+	  <vendoroption>
+        <optionvalue switch="/" requiresvalue="false">clone_wait</optionvalue>
+      </vendoroption>
+      <vendoroption>
+        <optionvalue requiresvalue="false" switch="/">s</optionvalue>
+      </vendoroption>
+      <vendoroption>
+        <container>
+          <containervalue switch="/" requiresvalue="false">v</containervalue>
+          <optionvalue switch="/" requiresvalue="false">qn</optionvalue>
+        </container>
+      </vendoroption>
+    </behavior>
+  </behaviors> 
+  <parameters>
+    <parametermapping name="logfile">
+      <vendoroption>
+				<container>
+					<containervalue switch="/" requiresvalue="false" valuedelimiter="" enclose="&quot;">v</containervalue>
+					<optionvalue switch="/" requiresvalue="true" valuedelimiter="" enclose="&quot;">l*vx </optionvalue>
+				</container>
+			</vendoroption>
+    </parametermapping>
+    <parametermapping name="force" /> <!-- DCU must declare support for force param so that DCU version(s) 1.3.0 and earlier can self-update to this latest version -->
+  </parameters>
+  <returncodes>
+    <returncodemapping name="SUCCESS">
+      <vendorreturncode>0</vendorreturncode>
+    </returncodemapping>
+    <returncodemapping name="REBOOT_REQUIRED">
+      <vendorreturncode>2</vendorreturncode>
+    </returncodemapping>
+	<returncodemapping name="REBOOT_REQUIRED">
+	  <vendorreturncode>3010</vendorreturncode>
+	</returncodemapping>
+	<returncodemapping name="REBOOT_REQUIRED">
+	  <vendorreturncode>1641</vendorreturncode>
+	</returncodemapping>
+    <returncodemapping name="ERROR">
+      <vendorreturncode>1</vendorreturncode>
+    </returncodemapping>
+    <returncodemapping name="DEP_HARD_ERROR">
+      <vendorreturncode>740</vendorreturncode>
+    </returncodemapping>
+	<returncodemapping name="DEP_HARD_ERROR">
+      <vendorreturncode>1602</vendorreturncode>
+    </returncodemapping>
+	<returncodemapping name="DEP_HARD_ERROR">
+      <vendorreturncode>1603</vendorreturncode>
+    </returncodemapping>
+	<returncodemapping name="DEP_HARD_ERROR">
+      <vendorreturncode>1613</vendorreturncode>
+    </returncodemapping>
+  </returncodes>
+  <inventorymetadata>
+    <fullpackageidentifier>
+      <msis>
+        <msi componentID="23400">
+          <upgradecode>{E9D40AD1-4E1D-46F2-B44A-F7E98338FCC7}</upgradecode>
+          <version>5.1.0</version>
+        </msi>
+      </msis>
+    </fullpackageidentifier>
+  </inventorymetadata>
+</MUPDefinition>

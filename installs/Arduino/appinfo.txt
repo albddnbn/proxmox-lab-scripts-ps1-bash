@@ -1,0 +1,27 @@
+----- Notes ----
+1. Exe installation through gui gave a bunch of admin prompts, system-wide
+
+----- MSI -----
+UninstallString    : MsiExec.exe /I{CE3A4D22-4A86-4CA8-AB93-E843B3E38533}
+UninstallSubkey    : {CE3A4D22-4A86-4CA8-AB93-E843B3E38533}
+ProductCode        : {CE3A4D22-4A86-4CA8-AB93-E843B3E38533}
+Is64BitApplication : True
+Publisher          : Arduino SA
+InstallDate        : 20240206
+DisplayVersion     : 2.2.1.0
+DisplayName        : Arduino IDE
+
+----- EXE -------
+UninstallString    : "C:\Program Files\Arduino IDE\Uninstall Arduino IDE.exe" /allusers
+UninstallSubkey    : 459fc68c-eb53-59f8-8957-9913bc627af3
+ProductCode        : 459fc68c-eb53-59f8-8957-9913bc627af3
+Is64BitApplication : True
+Publisher          : Arduino SA
+DisplayVersion     : 2.2.1
+DisplayName        : Arduino IDE 2.2.1
+
+----- Processes -----
+Arduino IDE.exe
+arduino-cli.exe
+mdns-discovery.exe
+serial-discovery.exe

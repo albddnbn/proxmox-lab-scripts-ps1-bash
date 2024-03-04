@@ -1,0 +1,4 @@
+**To update**: 
+1. Paste new x86 and x64 .msi installers into the files directory
+2. Change the comments/etc. in Deploy-Notepad++ to reflect new version
+3. Leave comment in change log

@@ -1,0 +1,32 @@
+Pretty standard manual installation config
+Destination location:
+      C:\Program Files (x86)\TeraTerm
+
+Setup type:
+      Standard installation
+
+Selected components:
+      Tera Term & Macro
+      TTSSH
+      CygTerm+
+      TTProxy
+      Additional Plugins
+         TTXResizeMenu (VT-Window size can be changed from preset)
+         TTXttyrec (ttyrec format record data can be recorded or playback)
+
+Start Menu folder:
+      Tera Term 5
+
+Additional tasks:
+      Create Tera Term shortcut to Desktop
+      Associate .ttl file to ttpmacro.exe
+      Associate telnet protocol to ttermpro.exe
+      Associate ssh protocol to ttermpro.exe
+      Associate .tty file to ttermpro.exe
+
+I checked off all file associations so I could pull them from registry and offer as options through script.
+
+exe uninstall doesn't remove C:\WINDOWS\Fonts\TSPECIAL1.ttf
+
+**Is it necessary to send a link to this page: https://teratermproject.github.io/manual/5/en/setup/teraterm.html
+to instructors to see if we can configure the app during installation to make things easier for instructors/students?

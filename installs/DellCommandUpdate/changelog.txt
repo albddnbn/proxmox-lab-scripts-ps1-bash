@@ -1,0 +1,4 @@
+1-22-24:
+Added another process to beginning of install/uninstall sections to close 'ServiceShell.exe'
+
+ServiceShell.exe is linked to DellCLientManagementService

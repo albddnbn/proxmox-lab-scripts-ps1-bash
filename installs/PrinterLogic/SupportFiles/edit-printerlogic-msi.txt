@@ -1,0 +1,7 @@
+You can add your HOMEURL and AUTHORIZATION CODE directly into the Printer Installer Client .msi file.
+
+Use Orca: https://learn.microsoft.com/en-us/windows/win32/msi/orca-exe
+
+You can also just add the command line arguments when executing the .msi:
+https://kb.printerlogic.com/s/article/Command-to-install-Windows-client
+

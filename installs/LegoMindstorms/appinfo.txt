@@ -1,0 +1,13 @@
+UninstallString    : MsiExec.exe /I{1AA31EDF-1388-40AF-97D3-EF1CCA5E211A}
+ProductCode        : {1AA31EDF-1388-40AF-97D3-EF1CCA5E211A}
+Is64BitApplication : True
+Publisher          : LEGO System A/S
+InstallDate        : 20240202
+DisplayVersion     : 1.5.3
+DisplayName        : LEGO MINDSTORMS Education EV3 Classroom
+
+dealing with uninstalling the earlier version and teacher versions is tricky - may be unnecessary if we only use the newer version msi.
+
+S drive install location: C:\Program Files (x86)\LEGO Software\LEGO MINDSTORMS Edu EV3\ (older version like v4.x something)
+
+execute-msi -action 'uninstall' -path "{1AA31EDF-1388-40AF-97D3-EF1CCA5E211A}"
