@@ -1,0 +1,11 @@
+UninstallString    : "C:\Program Files (x86)\ProtoTRAK\KMX-Offline\unins000.exe"
+UninstallSubkey    : ProtoTRAK KMX Offline_is1
+InstallLocation    : C:\Program Files (x86)\ProtoTRAK\KMX-Offline\
+ProductCode        :
+Is64BitApplication : False
+Publisher          : Southwestern Industries, Inc
+InstallDate        : 20240313
+DisplayVersion     : 1.3.0
+DisplayName        : ProtoTRAK KMX Offline version 1.3.0
+
+**Trial version by default**

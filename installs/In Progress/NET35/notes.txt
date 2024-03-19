@@ -1,0 +1,2 @@
+No uninstallation phase - 3/8/24
+Windows Build 19045 / 22H2
