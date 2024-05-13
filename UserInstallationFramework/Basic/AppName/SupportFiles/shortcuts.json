@@ -1,0 +1,13 @@
+[
+    {
+        "ShortcutTarget": "C:/(($appname$))/(($appname$)).exe",
+        "ShortcutLocation": "C:/Users/Public/Desktop/(($appname$)).lnk",
+        "ShortcutIconPath": "",
+        "ShortcutDescription": "Open (($appname$)) applicaiton."
+    },
+    {
+        "ShortcutTarget": "C:/(($appname$))/(($appname$)).exe",
+        "ShortcutLocation": "C:/ProgramData/Microsoft/Windows/Start Menu/(($appname$)).lnk",
+        "ShortcutIconPath": "Open (($appname$)) applicaiton."
+    }
+]

@@ -1,0 +1,7 @@
+[
+    {
+        "File": "vcredist_2022.x64.exe",
+        "AppName": "Microsoft Visual C++ 2015-2022 Redistributable (x64)",
+        "SilentSwitches": "/quiet /norestart"
+    }
+]

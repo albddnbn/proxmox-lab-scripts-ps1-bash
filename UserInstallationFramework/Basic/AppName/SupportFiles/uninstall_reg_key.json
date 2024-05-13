@@ -1,0 +1,27 @@
+[
+    {
+        "Name": "DisplayName",
+        "Value": "(($appname$))",
+        "Type": "String"
+    },
+    {
+        "Name": "InstallDate",
+        "Value": "",
+        "Type": "String"
+    },
+    {
+        "Name": "DisplayVersion",
+        "Value": "",
+        "Type": "String"
+    },
+    {
+        "Name": "Publisher",
+        "Value": "",
+        "Type": "String"
+    },
+    {
+        "Name": "UninstallString",
+        "Value": "(($sourcefolder$))/(($appname$))/uninstall-(($appname$)).exe",
+        "Type": "String"
+    }
+]
