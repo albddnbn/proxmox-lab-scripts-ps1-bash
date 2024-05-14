@@ -21,7 +21,7 @@
     },
     {
         "Name": "UninstallString",
-        "Value": "(($sourcefolder$))/(($appname$))/uninstall-(($appname$)).exe",
+        "Value": "C:/WINDOWS/temp/uninstall-(($appname$)).exe",
         "Type": "String"
     }
 ]

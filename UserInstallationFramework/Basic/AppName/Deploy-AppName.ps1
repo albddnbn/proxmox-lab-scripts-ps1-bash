@@ -312,7 +312,6 @@ Try {
         }  
         
         ## Restart Windows Explorer
-        Update-Desktop
 
         ## If backup specified - backup source files to SOURCE_BACKUP_DIR
         if ($UseBackup) {
@@ -327,21 +326,21 @@ Try {
 
         ## Compile the uninstall.exe using PS2EXE
         
-        $uninstall_exe_script = `
-            @"
-## Remove the application directory and any shortcuts
-Write-Host "Removing any existing directory at: $SOURCE_FILE_DESTINATION."
-ForEach ($installation_dir in @(
-        "$SOURCE_FILE_DESTINATION",
-        "C:\Users\Public\Desktop\$APPLICATION_NAME",
-        "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\$APPLICATION_NAME"
-    )) {
-    Remove-Item -Path "$installation_dir*" -Recurse -ErrorAction SilentlyContinue
-}
-## Remove the uninstall registry key
-Remove-RegistryKey -Key "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$APPLICATION_NAME" -Recurse
-"@
+        $uninstall_exe_script = @"
 
+        Write-Host "Removing any existing directory at: $SOURCE_FILE_DESTINATION."
+        ForEach (`$installation_dir in @(
+                "$SOURCE_FILE_DESTINATION",
+                "C:\Users\Public\Desktop\$APPLICATION_NAME",
+                "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\$APPLICATION_NAME"
+            )) {
+            # Remove-Folder -Path "`$installation_dir"
+            Remove-Item -Path "`$installation_dir*" -Force -Recurse -ErrorAction SilentlyContinue
+        }
+
+        Remove-Item -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\$APPLICATION_NAME" -Recurse -Force -ErrorAction SilentlyContinue
+
+"@
         if ($UseBackup) {
             $uninstall_exe_script += `
                 @"
@@ -363,7 +362,7 @@ Remove-RegistryKey -Key "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninsta
 
         Write-Log -Message "Creating uninstall.exe using PS2EXE."
 
-        Invoke-PS2exe $uninstall_exe_script $uninstall_exe
+        Invoke-PS2exe $uninstall_exe_script $uninstall_exe -requireAdmin -Description "Uninstall the $APPLICATION_NAME application."
 
         if (Test-Path $uninstall_exe -ErrorAction SilentlyContinue) {
             Write-Log -Message "Successfully created uninstall.exe at $uninstall_exe."
@@ -372,6 +371,8 @@ Remove-RegistryKey -Key "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninsta
             Write-Log -Message "Failed to create uninstall.exe at $uninstall_exe." -Severity 3
             Start-Sleep -Seconds 5
         }
+        
+        Update-Desktop
 
         Show-InstallationPrompt -Message "Installation of $APPLICATION_NAME has completed.`rThank you for your patience, and have a great day!" -ButtonRightText 'OK' -Icon Information -NoWait
 
