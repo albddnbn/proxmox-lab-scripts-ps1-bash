@@ -7,10 +7,10 @@
     This program is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
     You should have received a copy of the GNU Lesser General Public License along with this program. If not, see <http://www.gnu.org/licenses/>.
 .DESCRIPTION
-    The script is provided as a template to perform an install or uninstall of an application(s).
+    The script is provided as a template to perform an install or uninstall of (($appname$)).
     The script either performs an "Install" deployment type or an "Uninstall" deployment type.
     The install deployment type is broken down into 3 main sections/phases: Pre-Install, Install, and Post-Install.
-    The script dot-sources the AppDeployToolkitMain.ps1 script which contains the logic and functions required to install or uninstall an application.
+    The script dot-sources the AppDeployToolkitMain.ps1 script which contains the logic and functions required to install or uninstall (($appname$)).
 .PARAMETER DeploymentType
     The type of deployment to perform. Default is: Install.
 .PARAMETER DeployMode
@@ -35,8 +35,8 @@
     PowerShell.exe .\Deploy-(($appname$)).ps1 -DeploymentType "Uninstall" -DeployMode "Interactive"
 .NOTES
     Toolkit Exit Code Ranges:
-    60000 - 68999: Reserved for built-in exit codes in Deploy-Application.ps1, Deploy-Application.exe, and AppDeployToolkitMain.ps1
-    69000 - 69999: Recommended for user customized exit codes in Deploy-Application.ps1
+    60000 - 68999: Reserved for built-in exit codes in Deploy-(($appname$)).ps1, Deploy-(($appname$)).exe, and AppDeployToolkitMain.ps1
+    69000 - 69999: Recommended for user customized exit codes in Deploy-(($appname$)).ps1
     70000 - 79999: Recommended for user customized exit codes in AppDeployToolkitExtensions.ps1
 .LINK
     http://psappdeploytoolkit.com
@@ -58,11 +58,11 @@ Param (
     [Parameter(Mandatory = $false)]
     [switch]$Zipped = $false,
     [Parameter(Mandatory = $false)]
-    [string]$APP_USERS_GROUP = "Everyone",
+    [string]$APP_USERS_GROUP = "Everyone", # Group allowed to access source files at SOURCE_FILE_DESTINATION
     [string]$APPLICATION_NAME = '(($appname$))',
-    [string]$SOURCE_FILE_DESTINATION = '(($sourcefolder$))',
-    [string]$SOURCE_BACKUP_DIR = 'C:\Program Files',
-    [switch]$UseBackup = $false
+    [string]$SOURCE_FILE_DESTINATION = '(($sourcefolder$))', # folder that holds source folder. Ex: if you want BlackRocket source files in C:\BlackRocket, sourcefolder should be C:\
+    [string]$SOURCE_BACKUP_DIR = 'C:\Program Files', # used for a backup of source files on local system (optional)
+    [switch]$UseBackup = $false # specifies whether backup of source files should be created on local system.
 
 )
 
@@ -85,7 +85,7 @@ Try {
     [string]$appScriptAuthor = ''
     ##*===============================================
     ## Variables: Install Titles (Only set here to override defaults set by the toolkit)
-    [string]$installName = ''
+    [string]$installName = '(($appname$))'
     [string]$installTitle = '(($appname$))'
 
     ##* Do not modify section below
@@ -155,37 +155,6 @@ Try {
         ## Show Progress Message (With a Message to Indicate the Application is Being Uninstalled)
         Show-InstallationProgress -StatusMessage "Removing Any Existing Version of $installTitle. Please Wait..."
 
-        ## Uninstall a list of MSI Codes (change existing codes)
-        # "{B234DC00-1003-47E7-8111-230AA9E6BF10}",
-        # "{B234DC00-1003-47E7-8111-230AA9E6BF10}" | % { Execute-MSI -Action 'Uninstall' -Path "$_" }
-
-        ## Blanket removal of MSI installations
-        # Remove-MSIApplications -Name "*ApplicationName*" -Wildcard
-
-        ## Uninstall existing .exe installations.
-        # $AppList = Get-InstalledApplication -Name "ApplicationName"     
-        # ForEach ($App in $AppList) {
-
-        #     If (($App.UninstallString)) {
-        #         $UninstPath = $($App.UninstallString).Replace('"', '')       
-        #         If (Test-Path -Path $UninstPath) {
-        #             Write-log -Message "Found $($App.DisplayName) $($App.DisplayVersion) and a valid uninstall string, now attempting to uninstall."
-        #             if ($app.uninstallstring -like "*.exe *") {
-        #                 ## Script attempts to parse out any arguments in the apps uninstall string.
-        #                 $uninstall_str = $(($app.uninstallstring) -split (".exe")[0]) + ".exe"
-        #                 $uninstall_args = $(($app.uninstallstring) -split (".exe")[1])
-
-        #                 Execute-Process -Path "$uninstall_str" -Parameters "$uninstall_args" -WindowStyle 'Hidden'
-        #             }
-        #             else {
-        #                 ## Uninstallation switches will have to be added here.
-        #                 Execute-Process -Path $UninstPath -Parameters '/S /v/qn' -WindowStyle 'Hidden'
-        #                 Start-Sleep -Seconds 5
-        #             }
-        #         }
-        #     }
-        # }
-
         Write-Log -Message "Removing any existing items at $SOURCE_FILE_DESTIONATION, and public desktop / start menu items for $APPLICATION_NAME."
         ForEach ($filesystem_item in @("$SOURCE_FILE_DESTINATION", "C:\Users\Public\Desktop\$APPLICATION_NAME", "C:\ProgramData\Microsoft\Windows\Start Menu\$APPLICATION_NAME")) {
             Remove-Item -Path "$filesystem_item*" -Recurse -Force
@@ -197,9 +166,7 @@ Try {
             Start-Sleep -Seconds 5
             # Exit-Script -ExitCode 1
         }
-
         $dependencies_json = Get-Content -Path "$dirSupportFiles\dependencies.json" -Raw | ConvertFrom-Json
-
         # Cycle through each dependency object in the json file, and install.
         ForEach ($single_dependency in $dependencies_json) {
             $installation_file = $single_dependency.file
@@ -228,8 +195,6 @@ Try {
             }
         }
 
-
-     
         ##*===============================================
         ##* INSTALLATION
         ##*===============================================
@@ -296,6 +261,7 @@ Try {
         $acl | Set-ACL -Path "$SOURCE_FILE_DESTINATION"
 
         ## Create an Uninstall Key in the Registry at: HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\(($appname$))
+        ## uses uninstall_reg_key.json to create the key.
         $uninstall_reg_json = Get-ChildItem -Path "$dirSupportFiles" -Filter "uninstall_reg_key.json" -File -ErrorAction SilentlyContinue
         if (-not $uninstall_reg_json) {
             Write-Log -Message "Sorry, couldn't find uninstall_reg_key.json in $dirSupportFiles. This is not a good sign, IF you wanted an uninstall key created for your application. If you did not want an uninstall key, this is OK." -Severity 2
@@ -311,8 +277,6 @@ Try {
             Write-Log -Message "Creatied uninstall registry key using objects contained in $($uninstall_reg_json.fullname)."
         }  
         
-        ## Restart Windows Explorer
-
         ## If backup specified - backup source files to SOURCE_BACKUP_DIR
         if ($UseBackup) {
             Write-Log -Message "UseBackup = TRUE, backing up source files to $SOURCE_BACKUP_DIR."
@@ -364,14 +328,7 @@ Try {
 
         Invoke-PS2exe $uninstall_exe_script $uninstall_exe -requireAdmin -Description "Uninstall the $APPLICATION_NAME application."
 
-        if (Test-Path $uninstall_exe -ErrorAction SilentlyContinue) {
-            Write-Log -Message "Successfully created uninstall.exe at $uninstall_exe."
-        }
-        else {
-            Write-Log -Message "Failed to create uninstall.exe at $uninstall_exe." -Severity 3
-            Start-Sleep -Seconds 5
-        }
-        
+        ## Restart Windows Explorer
         Update-Desktop
 
         Show-InstallationPrompt -Message "Installation of $APPLICATION_NAME has completed.`rThank you for your patience, and have a great day!" -ButtonRightText 'OK' -Icon Information -NoWait
@@ -415,7 +372,7 @@ Try {
 
 
         ## Remove the uninstall registry key
-        Remove-RegistryKey -Key "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$APPLICATION_NAME" -Recurse
+        Remove-RegistryKey -Key "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$APPLICATION_NAME" -Recurse -Force
 
         ##*===============================================
         ##* POST-UNINSTALLATION

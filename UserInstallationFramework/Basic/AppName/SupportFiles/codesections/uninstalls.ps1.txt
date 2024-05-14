@@ -1,0 +1,30 @@
+## Uninstall a list of MSI Codes (change existing codes)
+# "{B234DC00-1003-47E7-8111-230AA9E6BF10}",
+# "{B234DC00-1003-47E7-8111-230AA9E6BF10}" | % { Execute-MSI -Action 'Uninstall' -Path "$_" }
+
+## Blanket removal of MSI installations
+# Remove-MSIApplications -Name "*ApplicationName*" -Wildcard
+
+## Uninstall existing .exe installations.
+# $AppList = Get-InstalledApplication -Name "ApplicationName"     
+# ForEach ($App in $AppList) {
+
+#     If (($App.UninstallString)) {
+#         $UninstPath = $($App.UninstallString).Replace('"', '')       
+#         If (Test-Path -Path $UninstPath) {
+#             Write-log -Message "Found $($App.DisplayName) $($App.DisplayVersion) and a valid uninstall string, now attempting to uninstall."
+#             if ($app.uninstallstring -like "*.exe *") {
+#                 ## Script attempts to parse out any arguments in the apps uninstall string.
+#                 $uninstall_str = $(($app.uninstallstring) -split (".exe")[0]) + ".exe"
+#                 $uninstall_args = $(($app.uninstallstring) -split (".exe")[1])
+
+#                 Execute-Process -Path "$uninstall_str" -Parameters "$uninstall_args" -WindowStyle 'Hidden'
+#             }
+#             else {
+#                 ## Uninstallation switches will have to be added here.
+#                 Execute-Process -Path $UninstPath -Parameters '/S /v/qn' -WindowStyle 'Hidden'
+#                 Start-Sleep -Seconds 5
+#             }
+#         }
+#     }
+# }
