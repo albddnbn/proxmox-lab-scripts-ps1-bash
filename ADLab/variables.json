@@ -1,0 +1,13 @@
+{
+    "domainName": "adlab.local",
+    "domainNETBIOSName": "ADLAB",
+    "domainController": "test-dc-01",
+    "domainControllerIP": "10.0.0.2",
+    "dnsServers": [
+        "10.0.0.2",
+        "1.1.1.1"
+    ],
+    "gatewayIP": "10.0.0.1",
+    "subnetPrefix": "24",
+    "insecurePassword": "Somepass1"
+}

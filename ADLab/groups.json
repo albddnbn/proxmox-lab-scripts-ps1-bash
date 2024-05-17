@@ -1,0 +1,27 @@
+{
+    "ous": {
+        "name": "homelab",
+        "children": [
+            {
+                "name": "users"
+            },
+            {
+                "name": "pcs"
+            },
+            {
+                "name": "admins"
+            }
+        ]
+    },
+    "groups": [
+        {
+            "name": "users"
+        },
+        {
+            "name": "pcs"
+        },
+        {
+            "name": "admins"
+        }
+    ]
+}

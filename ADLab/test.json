@@ -1,0 +1,24 @@
+{
+    "domain": {
+        "name": "adlab.local",
+        "netbios": "ADLAB",
+        "dc": "test-dc-01",
+        "dcIP": "10.0.0.2",
+        "dnsServers": [
+            "10.0.0.2",
+            "1.1.1.1"
+        ],
+        "gatewayIP": "10.0.0.1",
+        "subnetPrefix": "24",
+        "insecurePassword": "Somepass1"
+    },
+    "dhcp": {
+        "dhcpServerIP": "10.0.0.2",
+        "scope": {
+            "name": "AD Lab DHCP Scope",
+            "start": "10.0.0.10",
+            "end": "10.0.0.240",
+            "subnetPrefix": "24"
+        }
+    }
+}
