@@ -45,10 +45,3 @@ Get-ComputerDetails -TargetComputer 't-client-12' -Outputfile 't-client-12-detai
 
 ### Ping-TestReport
 
-## Contributing <a name="contributing"></a>
-
-Information about how others can contribute to your project.
-
-## License <a name="license"></a>
-
-Information about the license.
