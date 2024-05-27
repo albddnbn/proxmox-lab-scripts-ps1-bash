@@ -19,7 +19,7 @@ VNET_SUBNET="10.0.0.0/24"
 VNET_GATEWAY="10.0.0.1"
 
 ## Domain Controller VM Variables:
-NODE_NAME="nexusr730" # should be able to get this through the script too
+#NODE_NAME="nexusr730" # should be able to get this through the script too
 VM_ID=112
 VM_NAME="lab-dc-01"
 
@@ -41,6 +41,35 @@ LAN_ALIAS="lablan"
 LAN_COMMENT="Domain LAN"
 LAN_CIDR="10.0.0.1/24"
 LAN_REPLACEMENT_STR="((\$LAN_ALIAS\$))"
+
+
+## Get nodes / offer selection if more than one.
+readarray -t nodes < <(pvesh ls /nodes)
+length=${#nodes[@]}
+echo $length
+# filter findings so only filenames are listed in menu:
+second_elements=()
+# Split each line and add the second element to the array
+for ((i=0; i<$length; i++)); do
+  IFS='        ' read -ra split_line <<< "${nodes[$i]}"
+
+  ## if split_line[1] is not empty, add it to the array.
+  if [[ -n ${split_line[1]} ]]; then
+    second_elements+=("${split_line[1]}")
+  fi
+
+  #second_elements+=("${split_line[1]}")
+done
+# Present the menu and get the user's choice
+echo "Please select your node name, looks like the menu generation isn't perfect yet.."
+select NODE_NAME in "${second_elements[@]}"; do
+  if [[ -n $NODE_NAME ]]; then
+    echo "You have selected: $NODE_NAME"
+    break
+  else
+    echo "Invalid selection. Please try again."
+  fi
+done
 
 echo "Creating zone: $ZONE_NAME"
 pvesh create /cluster/sdn/zones --type simple --zone "$ZONE_NAME" --mtu 1460
@@ -93,7 +122,7 @@ echo "Creating VM: $VM_NAME"
 ## create a vm using specified ISO.
 pvesh create /nodes/$NODE_NAME/qemu -vmid $VM_ID -name "$VM_NAME" -storage $ISO_STORAGE \
       -memory 8192 -cpu cputype=x86-64-v2-AES -cores 2 -sockets 2 -cdrom "${main_iso}" \
-      -ide1 "${virtio_iso},media=cdrom" -net0 virtio,bridge=myvnet \
+      -ide1 "${virtio_iso},media=cdrom" -net0 virtio,bridge=$VNET_NAME \
       -scsihw virtio-scsi-pci -bios ovmf -machine pc-q35-8.1 -tpmstate "$VM_STORAGE:4,version=v2.0" \
       -efidisk0 "$VM_STORAGE:1" -scsi0 "$VM_STORAGE:20,iothread=1" -bootdisk ide2 -ostype win11 \
       -agent 1 -virtio0 "$VM_STORAGE:32,iothread=1" -boot "order=ide2;virtio0;scsi0"
