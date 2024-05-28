@@ -1,0 +1,32 @@
+{
+    "domain": {
+        "name": "test.lab",
+        "netbios": "TEST",
+        "dc_hostname": "lab-dc-01",
+        "dc_ip": "10.0.0.2",
+        "dns_servers": [
+            "10.0.0.2",
+            "1.1.1.1"
+        ],
+        "gateway": "10.0.0.1",
+        "subnet_prefix": "24",
+        "password": "Somepass1"
+    },
+    "dhcp": {
+        "ip_addr": "10.0.0.2",
+        "scope": {
+            "name": "Test Lab DHCP Scope",
+            "start": "10.0.0.10",
+            "end": "10.0.0.240",
+            "gateway": "10.0.0.1",
+            "subnet_prefix": "255.255.255.0",
+            "dns_servers": [
+                "10.0.0.2",
+                "1.1.1.1"
+            ]
+        }
+    },
+    "step_two_task": {
+        "name": "Step Two - Install AD DS"
+    }
+}

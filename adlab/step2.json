@@ -1,0 +1,46 @@
+[
+    {
+        "name": "admins",
+        "type": "ou",
+        "children": [
+            {
+                "name": "testlabadmins",
+                "description": "Members of this group have full control of the domain",
+                "memberof": [
+                    "Domain Admins",
+                    "Administrators"
+                ],
+                "type": "security"
+            }
+        ]
+    },
+    {
+        "name": "users",
+        "type": "ou",
+        "children": [
+            {
+                "name": "testlabusers",
+                "description": "Members of this group have basic access to the domain",
+                "memberof": [
+                    "Users",
+                    "Domain Users"
+                ],
+                "type": "security"
+            }
+        ]
+    },
+    {
+        "name": "pcs",
+        "type": "ou",
+        "children": [
+            {
+                "name": "testlabpcs",
+                "description": "Computers in this group have access to the domain",
+                "memberof": [
+                    "Domain Computers"
+                ],
+                "type": "security"
+            }
+        ]
+    }
+]

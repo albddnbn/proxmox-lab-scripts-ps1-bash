@@ -18,9 +18,12 @@ VNET_ALIAS="testvnet"
 VNET_SUBNET="10.0.0.0/24"
 VNET_GATEWAY="10.0.0.1"
 
-## Domain Controller VM Variables:
-#NODE_NAME="nexusr730" # should be able to get this through the script too
+## ask user to enter VM_ID variable
+# echo -n "Please enter the VM ID: "
+# read VM_ID
 VM_ID=112
+
+
 VM_NAME="lab-dc-01"
 
 ##
@@ -70,6 +73,46 @@ select NODE_NAME in "${second_elements[@]}"; do
     echo "Invalid selection. Please try again."
   fi
 done
+
+## ISO / VM storage selection:
+readarray -t storages < <(pvesh ls /nodes/$NODE_NAME/storage)
+length=${#storages[@]}
+echo $length
+# filter findings so only filenames are listed in menu:
+second_elements=()
+# Split each line and add the second element to the array
+for ((i=0; i<$length; i++)); do
+  IFS='        ' read -ra split_line <<< "${storages[$i]}"
+
+  ## if split_line[1] is not empty, add it to the array.
+  if [[ -n ${split_line[1]} ]]; then
+    second_elements+=("${split_line[1]}")
+  fi
+
+  #second_elements+=("${split_line[1]}")
+done
+# Present the menu and get the user's choice
+echo "Please select storage that contains Windows and Virtio ISOs:"
+select ISO_STORAGE in "${second_elements[@]}"; do
+  if [[ -n $ISO_STORAGE ]]; then
+    echo "You have selected: $ISO_STORAGE"
+    break
+  else
+    echo "Invalid selection. Please try again."
+  fi
+done
+
+# Present the menu and get the user's choice
+echo "Please select storage to be used for VM hard disks:"
+select VM_STORAGE in "${second_elements[@]}"; do
+  if [[ -n $VM_STORAGE ]]; then
+    echo "You have selected: $VM_STORAGE"
+    break
+  else
+    echo "Invalid selection. Please try again."
+  fi
+done
+
 
 echo "Creating zone: $ZONE_NAME"
 pvesh create /cluster/sdn/zones --type simple --zone "$ZONE_NAME" --mtu 1460

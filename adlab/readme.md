@@ -1,5 +1,7 @@
 This project involves a series of scripts to allow me to quickly recreate the components necessary for an Active Directory Lab including items listed below (divided by scripting language).
 
+The powershell steps are still being 'ironed out' -  5.28.2024
+
 Bash script is run initially to create:
 1. Virtual network/gateway through the use of Proxmox's SDN feature with ability to switch Internet access on/off instantaneously.
 2. VM in Proxmox using combination of configuration variables and known-good settings. At this point, the script will target the specified storage drive and list a menu of iso's. This allows the user to select their Windows Server iso, and then the VirtIO iso containing drivers necessary to use certain storage types.
