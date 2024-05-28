@@ -19,9 +19,9 @@ VNET_SUBNET="10.0.0.0/24"
 VNET_GATEWAY="10.0.0.1"
 
 ## ask user to enter VM_ID variable
-# echo -n "Please enter the VM ID: "
-# read VM_ID
-VM_ID=112
+echo -n "Please enter the VM ID: "
+read VM_ID
+# VM_ID=112
 
 
 VM_NAME="lab-dc-01"
