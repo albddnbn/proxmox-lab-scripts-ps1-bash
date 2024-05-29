@@ -1,15 +1,16 @@
 ## Step 1 of series of script that will install/configure AD DS with other basic components of an AD Domain.
 ## Setup is meant to be used for a 'home lab' situation, and not for real prodution environment use.
 ## By Alex B., May 2024
-param(
-    # [ValidateScript({ Test-Path $_ -PathType Leaf })]
-    # [string]$config_json = "step1.json",
-    [ValidateScript({ Test-Path $_ -PathType Leaf })]
-    [string]$step_two_script = "step2.ps1"
-)
+# param(
+#     # [ValidateScript({ Test-Path $_ -PathType Leaf })]
+#     # [string]$config_json = "domain_config.json",
+#     [ValidateScript({ Test-Path $_ -PathType Leaf })]
+#     [Parameter(Mandatory = $true)]
+#     [string]$step_two_script = "step2.ps1"
+# )
 
 
-$config_json = Get-Content "step1.json" -Raw | ConvertFrom-Json
+$config_json = Get-Content "domain_config.json" -Raw | ConvertFrom-Json
 Write-Host "[$(Get-Date -Format 'mm-dd-yyyy HH:mm:ss')] :: Creating variables from $config_json."
 ## Variables from json file:
 $DOMAIN_NAME = $config_json.domain.name
@@ -79,7 +80,7 @@ ForEach ($rulegroup in @("Network Discovery", "File and Printer Sharing")) {
 ## get working directory
 $scripts_dir = $PSScriptRoot
 
-$steptwo_path = "$scripts_dir\step2.ps1"
+$steptwo_path = Join-Path -Path $scripts_dir -ChildPath "step2.ps1"
 
 Write-Host "Creating scheduled task for step2.ps1..."
 

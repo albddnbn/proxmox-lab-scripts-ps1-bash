@@ -1,17 +1,20 @@
 ## Step 2 of series of script that will install/configure AD DS with other basic components of an AD Domain.
 ## Setup is meant to be used for a 'home lab' situation, and not for real prodution environment use.
 ## By Alex B., May 2024
-param(
-    [ValidateScript({ Test-Path $_ -PathType Leaf })]
-    [string]$groups_json = "step2.json",
-    [ValidateScript({ Test-Path $_ -PathType Leaf })]
-    [string]$config = "step1.json",
-    [ValidateScript({ Test-Path $_ -PathType Leaf })]
-    [string]$users_csv = "users.csv"
-)
+# param(
+#     [ValidateScript({ Test-Path $_ -PathType Leaf })]
+#     [Parameter(Mandatory = $true)]
+#     [string]$groups_json = "groups.json",
+#     [ValidateScript({ Test-Path $_ -PathType Leaf })]
+#     [Parameter(Mandatory = $true)]
+#     [string]$config = "domain_config.json",
+#     [ValidateScript({ Test-Path $_ -PathType Leaf })]
+#     [Parameter(Mandatory = $true)]
+#     [string]$users_csv = "users.csv"
+# )
 Write-Host "[$(Get-Date -Format 'mm-dd-yyyy HH:mm:ss')] :: Creating variables from $config_json."
 
-$config_json = Get-Content "step1.json" -Raw | ConvertFrom-Json
+$config_json = Get-Content "domain_config.json" -Raw | ConvertFrom-Json
 
 ## Variables from json file:
 $DOMAIN_NAME = $config_json.domain.name
@@ -43,15 +46,12 @@ Write-Host "DHCP_DNS_SERVERS:   $DHCP_DNS_SERVERS`n"
 
 Write-Host "Installing AD DS.."
 
-## Install AD DS
-Install-WindowsFeature -Name AD-Domain-Services -IncludeManagementTools
+Get-ScheduledTask -TaskName "AD Gen Step 2" | Unregister-ScheduledTask
 
-Write-Host "Creating new AD DS Forest.."
-Install-ADDSForest -DomainName $DOMAIN_NAME -DomainMode WinThreshold -ForestMode WinThreshold -InstallDns -SafeModeAdministratorPassword $DC_PASSWORD -Force -Confirm:$false
 ## get working directory
 $scripts_dir = $PSSCRIPTRoot
 
-$stepthree_path = "$scripts_dir\step3.ps1"
+$stepthree_path = Join-Path -Path $scripts_dir -ChildPath "step3.ps1"
 
 Write-Host "Creating scheduled task for step3.ps1..."
 
@@ -64,10 +64,10 @@ $scheduled_task = New-ScheduledTask -Action $taskAction -Trigger $taskTrigger -P
 $scheduled_task_name = "AD Gen Step 3"
 
 ## delete step 2 task: 
-Get-ScheduledTask -TaskName "AD Gen Step 2" | Unregister-ScheduledTask
 
 Register-ScheduledTask -TaskName "$scheduled_task_name" -InputObject $scheduled_task
 
 Start-Sleep -Seconds 2
 
-shutdown /r /t 0
+## Install AD DS
+Install-WindowsFeature -Name AD-Domain-Services -IncludeManagementTools
