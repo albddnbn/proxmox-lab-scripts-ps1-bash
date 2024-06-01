@@ -1,0 +1,12 @@
+[
+    {
+        "name": "profiles$",
+        "path": "C:/Shares/profiles$",
+        "description": "Profiles share"
+    },
+    {
+        "name": "users",
+        "path": "C:/Shares/users",
+        "description": "Users share"
+    }
+]

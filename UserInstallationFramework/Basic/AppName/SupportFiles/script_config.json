@@ -1,0 +1,58 @@
+{
+    "source_destination": "C:\\",
+    "application_name": "test name",
+    "friendly_name": "Fancy Test Application Name",
+    "conflicting_processes": "7z,winrar",
+    "source_files_zipped": false,
+    "shortcuts": [
+        {
+            "ShortcutTarget": "C:/(($appname$))/(($appname$)).exe",
+            "ShortcutLocation": "C:/Users/Public/Desktop/(($appname$)).lnk",
+            "ShortcutIconPath": "",
+            "ShortcutDescription": "Open (($appname$)) applicaiton."
+        },
+        {
+            "ShortcutTarget": "C:/(($appname$))/(($appname$)).exe",
+            "ShortcutLocation": "C:/ProgramData/Microsoft/Windows/Start Menu/(($appname$)).lnk",
+            "ShortcutIconPath": "Open (($appname$)) applicaiton."
+        }
+    ],
+    "depenedencies": [
+        {
+            "File": "vcredist_2022.x64.exe",
+            "AppName": "Microsoft Visual C++ 2015-2022 Redistributable (x64)",
+            "SilentSwitches": "/quiet /norestart"
+        }
+    ],
+    "uninstall_key": [
+        {
+            "Name": "DisplayName",
+            "Value": "(($appname$))",
+            "Type": "String"
+        },
+        {
+            "Name": "InstallDate",
+            "Value": "",
+            "Type": "String"
+        },
+        {
+            "Name": "DisplayVersion",
+            "Value": "",
+            "Type": "String"
+        },
+        {
+            "Name": "Publisher",
+            "Value": "",
+            "Type": "String"
+        },
+        {
+            "Name": "UninstallString",
+            "Value": "C:/WINDOWS/temp/uninstall-(($appname$)).exe",
+            "Type": "String"
+        }
+    ],
+    "acl_info": {
+        "target_group": "Everyone",
+        "assigned_permissions": "ReadAndExecute, Write, Modify"
+    }
+}

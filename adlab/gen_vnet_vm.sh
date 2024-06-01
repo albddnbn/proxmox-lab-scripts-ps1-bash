@@ -163,13 +163,15 @@ done
 echo "Creating VM: $VM_NAME"
 
 ## create a vm using specified ISO.
+## NEED TO MAKE SURE VM SEttings align with being able to create snapshots of VM.
+## Seems to at least need to have image file be .qcow format (probably other factors as well)
 pvesh create /nodes/$NODE_NAME/qemu -vmid $VM_ID -name "$VM_NAME" -storage $ISO_STORAGE \
       -memory 8192 -cpu cputype=x86-64-v2-AES -cores 2 -sockets 2 -cdrom "${main_iso}" \
       -ide1 "${virtio_iso},media=cdrom" -net0 virtio,bridge=$VNET_NAME \
-      -scsihw virtio-scsi-pci -bios ovmf -machine pc-q35-8.1 -tpmstate "$VM_STORAGE:4,version=v2.0" \
-      -efidisk0 "$VM_STORAGE:1" -scsi0 "$VM_STORAGE:20,iothread=1" -bootdisk ide2 -ostype win11 \
-      -agent 1 -virtio0 "$VM_STORAGE:32,iothread=1" -boot "order=ide2;virtio0;scsi0"
-
+      -scsihw virtio-scsi-pci -bios ovmf -machine pc-q35-8.1 -tpmstate "$VM_STORAGE:4,version=v2.0," \
+      -efidisk0 "$VM_STORAGE:1" -bootdisk ide2 -ostype win11 \
+      -agent 1 -virtio0 "$VM_STORAGE:32,iothread=1,format=qcow2" -boot "order=ide2;virtio0;scsi0"
+      #-scsi0 "$VM_STORAGE:20,iothread=1,backup=1,snapshot=1" 
 echo "Creating alias: $DC_ALIAS"
 
 pvesh create /cluster/firewall/aliases --name "$DC_ALIAS" -comment "$DC_COMMENT" -cidr "$DC_CIDR"

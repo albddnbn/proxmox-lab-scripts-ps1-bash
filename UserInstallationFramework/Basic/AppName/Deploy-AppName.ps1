@@ -57,10 +57,11 @@ Param (
     [switch]$DisableLogging = $false,
     [Parameter(Mandatory = $false)]
     [switch]$Zipped = $false,
+    [string]$scriptconfig_file = "script_config.json",
     [Parameter(Mandatory = $false)]
     [string]$APP_USERS_GROUP = "Everyone", # Group allowed to access source files at SOURCE_FILE_DESTINATION
-    [string]$APPLICATION_NAME = '(($appname$))',
-    [string]$SOURCE_FILE_DESTINATION = '(($sourcefolder$))', # folder that holds source folder. Ex: if you want BlackRocket source files in C:\BlackRocket, sourcefolder should be C:\
+    # [string]$APPLICATION_NAME = '(($appname$))',
+    # [string]$SOURCE_FILE_DESTINATION = '(($sourcefolder$))', # folder that holds source folder. Ex: if you want BlackRocket source files in C:\BlackRocket, sourcefolder should be C:\
     [string]$SOURCE_BACKUP_DIR = 'C:\Program Files', # used for a backup of source files on local system (optional)
     [switch]$UseBackup = $false # specifies whether backup of source files should be created on local system.
 
@@ -83,10 +84,26 @@ Try {
     [string]$appScriptVersion = '1.0.0'
     [string]$appScriptDate = ''
     [string]$appScriptAuthor = ''
+
+
+    ## Variables added by Alex B.
+    
+    $script_config = Get-Content $scriptconfig_file -Raw | ConvertFrom-Json
+
+    ## Create variables:
+    $SOURCE_FILE_DESTINATION = $script_config.source_destination
+    $APPLICATION_NAME = $script_config.application_name
+    $APPLICATION__FRIENDLY_NAME = $script_config.friendly_name
+
+    $SOURCE_FILE_DESTINATION = Join-Path -Path "$SOURCE_FILE_DESTINATION" -ChildPath "$APPLICATION_NAME"
+
+    ## Single string - comma-separated list of processes to close before install/uninstall
+    $CONFLICTING_PROCESSES = $script_config.conflicting_processes
+
     ##*===============================================
     ## Variables: Install Titles (Only set here to override defaults set by the toolkit)
-    [string]$installName = '(($appname$))'
-    [string]$installTitle = '(($appname$))'
+    [string]$installName = $APPLICATION_NAME
+    [string]$installTitle = $APPLICATION__FRIENDLY_NAME
 
     ##* Do not modify section below
     #region DoNotModify
@@ -129,7 +146,6 @@ Try {
         ##*===============================================
         [string]$installPhase = 'Pre-Installation'
 
-        $SOURCE_FILE_DESTINATION = Join-Path -Path "$SOURCE_FILE_DESTINATION" -ChildPath "$APPLICATION_NAME"
 
         ## Microsoft Intune Win32 App Workaround - Check If Running 32-bit Powershell on 64-bit OS, Restart as 64-bit Process
         If (!([Environment]::Is64BitProcess)) {
@@ -150,14 +166,15 @@ Try {
         }
 
         ## Insert process name(s) for software/application into quotes after CloseApps.
-        Show-InstallationWelcome -CloseApps '(($exe$))' -CloseAppsCountdown 60
+        Show-InstallationWelcome -CloseApps "$CONFLICTING_PROCESSES" -CloseAppsCountdown 60
 
         ## Show Progress Message (With a Message to Indicate the Application is Being Uninstalled)
         Show-InstallationProgress -StatusMessage "Removing Any Existing Version of $installTitle. Please Wait..."
 
         Write-Log -Message "Removing any existing items at $SOURCE_FILE_DESTIONATION, and public desktop / start menu items for $APPLICATION_NAME."
         ForEach ($filesystem_item in @("$SOURCE_FILE_DESTINATION", "C:\Users\Public\Desktop\$APPLICATION_NAME", "C:\ProgramData\Microsoft\Windows\Start Menu\$APPLICATION_NAME")) {
-            Remove-Item -Path "$filesystem_item*" -Recurse -Force
+            Write-Log -Message "Removing any files/folders at: $filesystem_item."
+            Remove-Item -Path "$filesystem_item*" -Recurse -Force # -ErrorAction SilentlyContinue
         }
 
         ## CHECK FOR AND INSTALL ANY DEPENDENCIES USING DEPENDENCIES.JSON:
@@ -166,15 +183,20 @@ Try {
             Start-Sleep -Seconds 5
             # Exit-Script -ExitCode 1
         }
-        $dependencies_json = Get-Content -Path "$dirSupportFiles\dependencies.json" -Raw | ConvertFrom-Json
+        # $dependencies_json = Get-Content -Path "$dirSupportFiles\dependencies.json" -Raw | ConvertFrom-Json
+
+        $dependencies_obj = $script_config.dependencies
+
         # Cycle through each dependency object in the json file, and install.
-        ForEach ($single_dependency in $dependencies_json) {
+        ForEach ($single_dependency in $dependencies_obj) {
             $installation_file = $single_dependency.file
             $dependency_app_name = $single_dependency.AppName
             $silentswitches = $single_dependency.silentswitches
 
+            Write-Log -Message "Checking for $dependency_app_name on $env:COMPUTERNAME."
+
             if (-not (Get-InstalledApplication -Name "$dependency_app_name")) {
-                Write-Log -Message "Did not find $dependency_app_name already installed on $env:COMPUTERNAME."
+                Write-Log -Message "$dependency_app_name NOT FOUND on $env:COMPUTERNAME, attempting install using: $installation_file $silentswitches." -Severity 2
                 $installation_file = Get-ChildItem -Path "$dirSupportFiles" -Filter "$installation_file" -File -ErrorAction SilentlyContinue
                 if (-not $installation_file) {
                     Write-Log -MEssage "Couldn't find $($single_dependency.file) in $dirSupportFiles, exiting script." -Severity 3
@@ -200,6 +222,8 @@ Try {
         ##*===============================================
         [string]$installPhase = 'Installation'
 
+        $Zipped = $script_config.source_files_zipped
+
         if ($Zipped) {
 
             ## Zipped Folder saves on package size. Much slower installation because of decompression.
@@ -208,19 +232,20 @@ Try {
                 Write-Log -Message "Couldn't find $APPLICATION_NAME.zip file in $dirFiles, exiting." -Severity 3
                 Exit-Script -ExitCode 1
             }
-            Write-Log -Message "Found $($sourcefiles.fullname), copying to $SOURCE_FILE_DESTINATION."
+            Write-Log -Message "Found $($sourcefiles.fullname), expanding archive to $SOURCE_FILE_DESTINATION."
 
             Expand-Archive -Path "$($sourcefiles.fullname)" -DestinationPath "C:\" -EA SilentlyContinue
         }
         elseif (Test-Path "$dirFiles\$APPLICATION_NAME" -PathType Container -ErrorAction SilentlyContinue) {
             Write-Log -Message "Using robocopy with /MIR to copy sources files to $SOURCE_FILE_DESTINATION." -Severity 2
+
             ## /MIR = /E plus /PURGE.../PURGE will erase files/directories that exist in destination but not in source
             robocopy /E /NFL /NDL /NJH /NJS "$dirFiles\$APPLICATION_NAME" "$SOURCE_FILE_DESTINATION"
 
             Write-Log -Message "Source files copied to $SOURCE_FILE_DESTINATION."
         }
         else {
-            Write-Host "Zipped switch was not used, and couldn't find the $APPLICATION_NAME folder in $dirFiles." -Severity 3
+            Write-Host "Source_files_zipped set to $Zipped, and couldn't find the regular/unzipped $APPLICATION_NAME folder in $dirFiles. Exiting script." -Severity 3
             Exit-Script -ExitCode 1
         }
 
@@ -230,12 +255,15 @@ Try {
         [string]$installPhase = 'Post-Installation'
 
         ## Create shortcuts using shortcuts.json
-        $shortcuts_json = Get-Childitem -Path "$dirSupportFiles" -File "shortcuts.json" -File -ErrorAction SilentlyContinue
-        if (-not $shortcuts_json) {
-            Write-Log -Message "Sorry, couldn't find shortcuts.json in $dirSupportFiles. This is not a good sign, IF you wanted shortcuts created for your application. If you did not want shortcuts, this is OK." -Severity 2
-            Start-Sleep -Seconds 5
-        }
-        else {
+        # $shortcuts_json = Get-Childitem -Path "$dirSupportFiles" -File "shortcuts.json" -File -ErrorAction SilentlyContinue
+        $shortcuts_obj = $script_config.shortcuts
+
+        # if (-not $shortcuts_json) {
+        #     Write-Log -Message "Sorry, couldn't find shortcuts.json in $dirSupportFiles. This is not a good sign, IF you wanted shortcuts created for your application. If you did not want shortcuts, this is OK." -Severity 2
+        #     Start-Sleep -Seconds 5
+        # }
+        # else {
+        if ($shortcuts_obj.length -ge 1) {
             Write-Log -Message "Creating shortcuts using objects contained in $($shortcuts_json.fullname)."
             $shortcuts_json = Get-Content -Path "$($shortcuts_json.fullname)" -Raw | ConvertFrom-Json
 
@@ -252,41 +280,48 @@ Try {
                 Write-Log -Message "Created shortcut w/target: $shortcut_target, location on system: $shortcut_location."
             }
         }
+        else {
+            Write-Log -Message "No shortcuts specified for creation in $dirSupportFiles/$scriptconfig_file."
+        }
+        # }
+
+
+        ## ACL variables:
+        $acl_group = $script_config.acl_info.target_group
+        $acl_permissions = $script_config.acl_info.assigned_permissions
+
+        Write-Log -Message "Configuring ACL to give $acl_group $acl_permissions permissions to $SOURCE_FILE_DESTINATION." -Severity 2
 
         ## Configure ACL for SOURCE_FILE_DESTINATION
         $acl = Get-ACL -Path "$SOURCE_FILE_DESTINATION"
         # $Everyone_AccessRule = [System.Security.AccessControl.FileSystemAccessRule]::new("Everyone", "FullControl", "ContainerInherit, ObjectInherit", "None", "Allow")
-        $App_Access_Rule = [System.Security.AccessControl.FileSystemAccessRule]::new("$APP_USERS_GROUP", "ReadAndExecute, Write, Modify", "ContainerInherit, ObjectInherit", "None", "Allow")
+        # $App_Access_Rule = [System.Security.AccessControl.FileSystemAccessRule]::new("$APP_USERS_GROUP", "ReadAndExecute, Write, Modify", "ContainerInherit, ObjectInherit", "None", "Allow")
+        $App_Access_Rule = [System.Security.AccessControl.FileSystemAccessRule]::new("$acl_group", "$acl_permissions", "ContainerInherit, ObjectInherit", "None", "Allow")
+
         $acl.AddAccessRule($App_Access_Rule)
         $acl | Set-ACL -Path "$SOURCE_FILE_DESTINATION"
 
         ## Create an Uninstall Key in the Registry at: HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\(($appname$))
         ## uses uninstall_reg_key.json to create the key.
-        $uninstall_reg_json = Get-ChildItem -Path "$dirSupportFiles" -Filter "uninstall_reg_key.json" -File -ErrorAction SilentlyContinue
-        if (-not $uninstall_reg_json) {
-            Write-Log -Message "Sorry, couldn't find uninstall_reg_key.json in $dirSupportFiles. This is not a good sign, IF you wanted an uninstall key created for your application. If you did not want an uninstall key, this is OK." -Severity 2
-            Start-Sleep -Seconds 5
-        }
-        else {
-            New-Folder -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$APPLICATION_NAME"
-            $uninstall_reg_json = Get-Content -Path "$($uninstall_reg_json.fullname)" -Raw | ConvertFrom-Json
+        # $uninstall_reg_json = Get-ChildItem -Path "$dirSupportFiles" -Filter "uninstall_reg_key.json" -File -ErrorAction SilentlyContinue
+        $uninstall_key_obj = $script_config.uninstall_key
+        # if (-not $uninstall_reg_json) {
+        #     Write-Log -Message "Sorry, couldn't find uninstall_reg_key.json in $dirSupportFiles. This is not a good sign, IF you wanted an uninstall key created for your application. If you did not want an uninstall key, this is OK." -Severity 2
+        #     Start-Sleep -Seconds 5
+        # }
+        # else {
+        if ($uninstall_key_obj.length -ge 1) {
+            Write-Log -Message "Creating uninstall registry entry for $APPLICATION_NAME."
 
-            ForEach ($item in $uninstall_reg_json) {
+            New-Folder -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$APPLICATION_NAME"
+            # $uninstall_reg_json = Get-Content -Path "$($uninstall_reg_json.fullname)" -Raw | ConvertFrom-Json
+
+            ForEach ($item in $uninstall_key_obj) {
                 Set-RegistryKey -Key "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$APPLICATION_NAME" -Name $item.Name -Value $item.Value -Type $item.Type
             }
-            Write-Log -Message "Creatied uninstall registry key using objects contained in $($uninstall_reg_json.fullname)."
-        }  
-        
-        ## If backup specified - backup source files to SOURCE_BACKUP_DIR
-        if ($UseBackup) {
-            Write-Log -Message "UseBackup = TRUE, backing up source files to $SOURCE_BACKUP_DIR."
-
-            $SOURCE_BACKUP_DIR = Join-Path -Path "$SOURCE_BACKUP_DIR" -ChildPath "$APPLICATION_NAME"
-            robocopy /E /NFL /NDL /NJH /NJS "$SOURCE_FILE_DESTINATION" "$SOURCE_BACKUP_DIR"
-
-            Write-Log -Message "Backed up source files to $SOURCE_BACKUP_DIR."
-
+            Write-Log -Message "Creatied uninstall registry key at HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$APPLICATION_NAME."
         }
+        # }  
 
         ## Compile the uninstall.exe using PS2EXE
         
@@ -305,14 +340,6 @@ Try {
         Remove-Item -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\$APPLICATION_NAME" -Recurse -Force -ErrorAction SilentlyContinue
 
 "@
-        if ($UseBackup) {
-            $uninstall_exe_script += `
-                @"
-                $SOURCE_BACKUP_DIR = Join-Path -Path "$SOURCE_BACKUP_DIR" -ChildPath "$APPLICATION_NAME"
-            
-                Remove-Item -Path "$SOURCE_BACKUP_DIR" -Recurse -Force
-"@
-        }
         if (-not (Get-PAckageProvider -Name 'Nuget' -ErrorAction SilentlyContinue)) {
             Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
         }
@@ -339,6 +366,12 @@ Try {
         ##* PRE-UNINSTALLATION
         ##*===============================================
         [string]$installPhase = 'Pre-Uninstallation'
+
+        $script_config = Get-Content $scriptconfig_file -Raw | ConvertFrom-Json
+
+        ## Create variables:
+        $SOURCE_FILE_DESTINATION = $script_config.source_destination
+        $APPLICATION_NAME = $script_config.application_name
 
         $SOURCE_FILE_DESTINATION = Join-Path -Path "$SOURCE_FILE_DESTINATION" -ChildPath "$APPLICATION_NAME"
 
