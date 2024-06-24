@@ -3,7 +3,9 @@
     "application_name": "test name",
     "friendly_name": "Fancy Test Application Name",
     "conflicting_processes": "7z,winrar",
-    "source_files_zipped": false,
+    "vendor": "Test Vendor",
+    "version": "1.0.0",
+    "author": "Your Name",
     "shortcuts": [
         {
             "ShortcutTarget": "C:/(($appname$))/(($appname$)).exe",
@@ -17,7 +19,7 @@
             "ShortcutIconPath": "Open (($appname$)) applicaiton."
         }
     ],
-    "depenedencies": [
+    "dependencies": [
         {
             "File": "vcredist_2022.x64.exe",
             "AppName": "Microsoft Visual C++ 2015-2022 Redistributable (x64)",

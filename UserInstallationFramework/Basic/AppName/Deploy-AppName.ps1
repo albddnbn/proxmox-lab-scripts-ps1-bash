@@ -55,40 +55,31 @@ Param (
     [switch]$TerminalServerMode = $false,
     [Parameter(Mandatory = $false)]
     [switch]$DisableLogging = $false,
+    [ValidateScript({ Test-Path $_ })]
     [Parameter(Mandatory = $false)]
-    [switch]$Zipped = $false,
-    [string]$scriptconfig_file = "script_config.json",
-    [Parameter(Mandatory = $false)]
-    [string]$APP_USERS_GROUP = "Everyone", # Group allowed to access source files at SOURCE_FILE_DESTINATION
-    # [string]$APPLICATION_NAME = '(($appname$))',
-    # [string]$SOURCE_FILE_DESTINATION = '(($sourcefolder$))', # folder that holds source folder. Ex: if you want BlackRocket source files in C:\BlackRocket, sourcefolder should be C:\
-    [string]$SOURCE_BACKUP_DIR = 'C:\Program Files', # used for a backup of source files on local system (optional)
-    [switch]$UseBackup = $false # specifies whether backup of source files should be created on local system.
-
+    [string]$ScriptConfig_File = "script_config.json" # holds variables for application name/etc.
 )
+
 
 Try {
     ## Set the script execution policy for this process
     Try { Set-ExecutionPolicy -ExecutionPolicy 'ByPass' -Scope 'Process' -Force -ErrorAction 'Stop' } Catch {}
+    $script_config = Get-Content $scriptconfig_file -Raw | ConvertFrom-Json
 
     ##*===============================================
     ##* VARIABLE DECLARATION
     ##*===============================================
     ## Variables: Application
-    [string]$appVendor = ''
-    [string]$appName = '(($appname$))'
-    [string]$appVersion = ''
+    [string]$appVendor = $script_config.vendor
+    [string]$appName = $script_config.application_name
+    [string]$appVersion = $script_config.version
     [string]$appArch = ''
     [string]$appLang = ''
     [string]$appRevision = ''
     [string]$appScriptVersion = '1.0.0'
     [string]$appScriptDate = ''
-    [string]$appScriptAuthor = ''
+    [string]$appScriptAuthor = $script_config.author
 
-
-    ## Variables added by Alex B.
-    
-    $script_config = Get-Content $scriptconfig_file -Raw | ConvertFrom-Json
 
     ## Create variables:
     $SOURCE_FILE_DESTINATION = $script_config.source_destination
@@ -171,20 +162,13 @@ Try {
         ## Show Progress Message (With a Message to Indicate the Application is Being Uninstalled)
         Show-InstallationProgress -StatusMessage "Removing Any Existing Version of $installTitle. Please Wait..."
 
-        Write-Log -Message "Removing any existing items at $SOURCE_FILE_DESTIONATION, and public desktop / start menu items for $APPLICATION_NAME."
+        Write-Log -Message "Removing existing source files and desktop/start menu shortcuts."
         ForEach ($filesystem_item in @("$SOURCE_FILE_DESTINATION", "C:\Users\Public\Desktop\$APPLICATION_NAME", "C:\ProgramData\Microsoft\Windows\Start Menu\$APPLICATION_NAME")) {
             Write-Log -Message "Removing any files/folders at: $filesystem_item."
             Remove-Item -Path "$filesystem_item*" -Recurse -Force # -ErrorAction SilentlyContinue
         }
 
         ## CHECK FOR AND INSTALL ANY DEPENDENCIES USING DEPENDENCIES.JSON:
-        if (-not (Test-Path "$dirSupportFiles\dependencies.json" -ErrorAction SilentlyContinue)) {
-            Write-Log -Message "Did not find dependencies.json inside $dirFiles." -Severity 2
-            Start-Sleep -Seconds 5
-            # Exit-Script -ExitCode 1
-        }
-        # $dependencies_json = Get-Content -Path "$dirSupportFiles\dependencies.json" -Raw | ConvertFrom-Json
-
         $dependencies_obj = $script_config.dependencies
 
         # Cycle through each dependency object in the json file, and install.
@@ -222,21 +206,8 @@ Try {
         ##*===============================================
         [string]$installPhase = 'Installation'
 
-        $Zipped = $script_config.source_files_zipped
-
-        if ($Zipped) {
-
-            ## Zipped Folder saves on package size. Much slower installation because of decompression.
-            $sourcefiles = Get-Childitem -Path "$dirFiles" -filter "$APPLICATION_NAME.zip" -file -erroraction silentlycontinue
-            if (-not $sourcefiles) {
-                Write-Log -Message "Couldn't find $APPLICATION_NAME.zip file in $dirFiles, exiting." -Severity 3
-                Exit-Script -ExitCode 1
-            }
-            Write-Log -Message "Found $($sourcefiles.fullname), expanding archive to $SOURCE_FILE_DESTINATION."
-
-            Expand-Archive -Path "$($sourcefiles.fullname)" -DestinationPath "C:\" -EA SilentlyContinue
-        }
-        elseif (Test-Path "$dirFiles\$APPLICATION_NAME" -PathType Container -ErrorAction SilentlyContinue) {
+        ## As long as the source file folder exists in ./Files - copy it to source file destination
+        if (Test-Path "$dirFiles\$APPLICATION_NAME" -PathType Container -ErrorAction SilentlyContinue) {
             Write-Log -Message "Using robocopy with /MIR to copy sources files to $SOURCE_FILE_DESTINATION." -Severity 2
 
             ## /MIR = /E plus /PURGE.../PURGE will erase files/directories that exist in destination but not in source
@@ -244,8 +215,9 @@ Try {
 
             Write-Log -Message "Source files copied to $SOURCE_FILE_DESTINATION."
         }
+        # Report error if source file folder not found in ./Files directory of PSADT
         else {
-            Write-Host "Source_files_zipped set to $Zipped, and couldn't find the regular/unzipped $APPLICATION_NAME folder in $dirFiles. Exiting script." -Severity 3
+            Write-Host "Folder named: `'$APPLICATION_NAME`' not found in Files directory: $dirFiles, unable to copy to source: $SOURCE_FILE_DESTINATION." -Severity 3
             Exit-Script -ExitCode 1
         }
 
@@ -257,12 +229,6 @@ Try {
         ## Create shortcuts using shortcuts.json
         # $shortcuts_json = Get-Childitem -Path "$dirSupportFiles" -File "shortcuts.json" -File -ErrorAction SilentlyContinue
         $shortcuts_obj = $script_config.shortcuts
-
-        # if (-not $shortcuts_json) {
-        #     Write-Log -Message "Sorry, couldn't find shortcuts.json in $dirSupportFiles. This is not a good sign, IF you wanted shortcuts created for your application. If you did not want shortcuts, this is OK." -Severity 2
-        #     Start-Sleep -Seconds 5
-        # }
-        # else {
         if ($shortcuts_obj.length -ge 1) {
             Write-Log -Message "Creating shortcuts using objects contained in $($shortcuts_json.fullname)."
             $shortcuts_json = Get-Content -Path "$($shortcuts_json.fullname)" -Raw | ConvertFrom-Json
