@@ -50,13 +50,6 @@ $DHCP_DNS_SERVERS = $config_json.dhcp.scope.dns_servers
 $DOMAIN_PATH = (Get-ADDomain).DistinguishedName
 
 $BASE_OU = "homelab"
-
-
-## Users will be placed into this OU:
-$OU_NAME = "users"
-
-$USER_DEST_PATH = "OU=$ou_name,OU=$BASE_OU,$DOMAIN_PATH"
-
 ## DHCP
 Install-WindowsFeature -Name DHCP -IncludeManagementTools
 
@@ -79,20 +72,34 @@ Set-DHCPServerv4OptionValue -ComputerName "$DC_HOSTNAME.$DOMAIN_NAME" `
 ##
 
 # Create a base 'homelab' OU, then OUs/groups from json inside.
-New-ADOrganizationalUnit -Name "$BASE_OU" -Path "$DOMAIN_PATH" -ProtectedFromAccidentalDeletion $false
+try {
+    New-ADOrganizationalUnit -Name "$BASE_OU" -Path "$DOMAIN_PATH" -ProtectedFromAccidentalDeletion $false
+    Write-Host "Created $BASE_OU OU."
+} catch {
+    Write-Host "Something went wrong with creating $BASE_OU OU." -Foregroundcolor Red
+}
 
+$base_ou_path = (Get-ADOrganizationalUnit -Filter "Name -like '$base_ou'").DistinguishedName
 # Foreach OU in json - create ou, then create child groups
 ForEach ($single_ou in $groups_json) {
-    write-host $single_ou.name
     $ou_name = $single_ou.name
-    write-host $ou_name
-    write-host "creating ou"
-    New-ADOrganizationalUnit -Name $ou_name -Path "OU=$BASE_OU,$DOMAIN_PATH" -ProtectedFromAccidentalDeletion $false
+    try {
+        New-ADOrganizationalUnit -Name $ou_name -Path "$base_ou_path" -ProtectedFromAccidentalDeletion $false
+        Write-Host "Created $ou_name OU."
 
+        $ou_path = (Get-ADOrganizationalUnit -Filter "Name -like '$base_ou'").DistinguishedName
+    } catch {
+        Write-Host "Something went wrong with creating $ou_name OU." -Foregroundcolor Red
+    }
     ForEach ($single_group in $single_ou.children) {
-        $group_name = $single_group.name
-        $group_desc = $single_group.description
-        New-ADGroup -Name $group_name -GroupCategory Security -GroupScope Global -Path "OU=$ou_name,OU=$BASE_OU,$DOMAIN_PATH" -Description $group_desc
+        try {
+            $group_name = $single_group.name
+            $group_desc = $single_group.description
+            New-ADGroup -Name $group_name -GroupCategory Security -GroupScope Global -Path "$ou_path" -Description $group_desc
+            Write-Host "Created group: $group_name."
+        } catch {
+            Write-Host "Something went wrong with creating group: $group_name." -Foregroundcolor Red
+        }
 
         ForEach ($member in $single_group.memberof) {
             Add-ADGroupMember -Identity $member -Members $group_name
@@ -103,12 +110,18 @@ ForEach ($single_ou in $groups_json) {
 ## Create users using users.csv\
 Write-Host "[$(Get-Date -Format 'mm-dd-yyyy HH:mm:ss')] :: Creating users from $users_csv."
 
+$department_ou_path = (Get-ADOrganizationalUnit -Filter "Name -like 'users'").DistinguishedName
+
 ## First, need to create a group for each department listed in csv
 ForEach ($unique_dept in $($user_info | select -exp department | select -unique)) {
 
     Write-Host "[$(Get-Date -Format 'mm-dd-yyyy HH:mm:ss')] :: Creating group for $unique_dept."
-
-    New-ADGroup -Name $unique_dept -GroupCategory Security -GroupScope Global -Path "$USER_DEST_PATH" -Description "Departmental group for $unique_dept"
+    try {
+        New-ADGroup -Name $unique_dept -GroupCategory Security -GroupScope Global -Path "$department_ou_path" -Description "Departmental group for $unique_dept"
+        Write-Host "Created departmental group: $unique_dept."
+    } catch {
+        Write-Host "Something went wrong with creating departmental group: $unique_dept." -Foregroundcolor Yellow
+    }
 }
 
 ForEach ($user_account in $user_info) {
@@ -137,22 +150,26 @@ ForEach ($user_account in $user_info) {
         Department        = $deptname
         AccountPassword   = $DC_PASSWORD
         Enabled           = $true
-        Path              = "$USER_DEST_PATH" ## explicit listing of the users group
         HomeDrive         = 'Z'
         HomeDirectory     = "\\$DC_HOSTNAME\users\$username"
         ProfilePath       = "\\$DC_HOSTNAME\profiles$\$username"
+        Path = "$department_ou_path"
+        # Force = $true
     }
 
     Write-Host "`nCreating user account for $firstname $lastname." -ForegroundColor Yellow
-    Write-Host "Username: $username"
-    Write-Host "Department: $deptname"
-
-    New-ADUser @splat
-
+    # Write-Host "Username: $username"
+    # Write-Host "Department: $deptname"
+    try {
+        New-ADUser @splat
+        Write-Host "Created user: $($splat.userprincipalname)."
+    } catch {
+        Write-Host "Something went wrong creating user; $($splat.userprincipalname)." -foregroundcolor yellow
+    }
     ## Add user to their dept group
     Add-ADGroupMember -Identity $deptname -Members $username
 
-    Add-ADGroupMember -Identity testlabusers -Members $username ## need to make this identity variable/dynamic
+    Add-ADGroupMember -Identity homelabusers -Members $username ## need to make this identity variable/dynamic
 
     
     ## if they're an IT user - make them an admin
@@ -178,17 +195,19 @@ ForEach ($user_account in $user_info) {
         Write-Host "Username: $admin_username"
         Write-Host "Department: $deptname"
 
-        New-ADUser @admin_splat
-
+        try {
+            New-ADUser @admin_splat
+            Write-Host "Created _admin user for: $($admin_splat.userprincipalname)."
+        } catch {
+            Write-Host "Something went wrong with creating user: $($admin_splat.userprincipalname)." -Foregroundcolor Yellow
+        }
         ## Add user to their dept group
-        Add-ADGroupMember -Identity testlabadmins -Members "$admin_username"
+        Add-ADGroupMember -Identity homelabadmins -Members "$admin_username"
 
     }
 }
 
 ## create file shares for folder redirection and roaming profiles, assign correct permissions for the users group created above.
-
-
 If (-not (Test-Path C:\Shares -ErrorAction SilentlyContinue)) {
     New-Item -Path C:\Shares -ItemType Directory | Out-null
 }
@@ -198,7 +217,7 @@ ForEach ($share_obj in $shares_json) {
         Name                  = $share_obj.name
         Path                  = $share_obj.path
         Description           = $share_obj.description
-        FullAccess            = "$DOMAIN_NETBIOS\Domain Admins", "$DOMAIN_NETBIOS\testlabadmins", "Administrators" # explicit admin listing.
+        FullAccess            = "$DOMAIN_NETBIOS\Domain Admins", "$DOMAIN_NETBIOS\homelabadmins", "Administrators" # explicit admin listing.
         ReadAccess            = "$DOMAIN_NETBIOS\Domain Users"
         FolderEnumerationMode = "AccessBased"
     }
@@ -213,7 +232,7 @@ ForEach ($share_obj in $shares_json) {
     ## disbale inheritance, convert to explicit permissions
     $acl = Get-Acl -Path $share_obj.path
     $acl.SetAccessRuleProtection($true, $true)
-    ## Add access rule for testlabusers group:
-    $acl.AddAccessRule((New-Object System.Security.AccessControl.FileSystemAccessRule("$DOMAIN_NETBIOS\testlabusers", "ReadandExecute,CreateDirectories,AppendData,Traverse,ExecuteFile", "Allow")))
+    ## Add access rule for homelabusers group:
+    $acl.AddAccessRule((New-Object System.Security.AccessControl.FileSystemAccessRule("$DOMAIN_NETBIOS\homelabusers", "ReadandExecute,CreateDirectories,AppendData,Traverse,ExecuteFile", "Allow")))
     Set-Acl -Path $share_obj.path -AclObject $acl
 }
