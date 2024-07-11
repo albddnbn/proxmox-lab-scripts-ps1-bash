@@ -1,6 +1,7 @@
 # proxmox-lab-scripts-ps1-bash
 
-![PowerShell](https://img.shields.io/badge/PowerShell-%235391FE.svg?style=for-the-badge&logo=powershell&logoColor=white)
+![PowerShell](https://img.shields.io/badge/PowerShell-%235391FE.svg?style=for-the-badge&logo=powershell&logoColor=white)  [![Bash](https://img.shields.io/badge/Bash-4EAA25?logo=gnubash&logoColor=fff)](#)
+
 
 ## This is a collection of scripts I'm in the process of developing. The scripts have risen from my usage of Proxmox, and a number of different 'home lab' experiments.
 
