@@ -1,3 +1,7 @@
+# NOTE: As of ~June, 2024, I've moved the 'User Installation Framework' to it's own repository. I've also made a number of changes that I hope are improvements!
+
+[PSADT-Install-Framework Repository](https://github.com/albddnbn/psadt-install-framework)
+
 # User Installation Steps
 
 **Date:** March 3, 2024
