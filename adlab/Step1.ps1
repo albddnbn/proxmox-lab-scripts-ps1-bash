@@ -8,27 +8,29 @@
 param(
     [ValidateScript({ Test-Path $_ -PathType Leaf })]
     [Parameter(Mandatory = $false)]
-    [string]$configjson = "domain_config.json"
-)
-# Makes sure configuration json exists.
+    $config_ps1 = "config.ps1"
+    )
+## Dot source configuration variables:
 try {
-    $config_json = Get-Content $configjson -Raw | ConvertFrom-Json
+    $config_ps1 = Get-ChildItem -Path '.' -Filter "config.ps1" -File -ErrorAction Stop
+    Write-Host "Found $($config_ps1.fullname), dot-sourcing configuration variables.."
+
+    . "$($config_ps1.fullname)"
 }
 catch {
 
-    Write-Host "[$(Get-Date -Format 'mm-dd-yyyy HH:mm:ss')] :: Error reading $configjson, exiting script." -ForegroundColor Red
+    Write-Host "[$(Get-Date -Format 'mm-dd-yyyy HH:mm:ss')] :: Error reading searching for / dot sourcing config ps1, exiting script." -ForegroundColor Red
     Read-Host "Press enter to exit.."
     Return 1
-
 }
 Write-Host "[$(Get-Date -Format 'mm-dd-yyyy HH:mm:ss')] :: Creating variables from $configjson JSON file."
 ## Variables from json file:
 ## Domain Controller (static IP settings, hostname..)
-$STATIC_IP_ADDR = $config_json.domain.dc_ip
-$DC_DNS_SETTINGS = $config_json.domain.dns_Servers
-$GATEWAY_IP_ADDR = $config_json.domain.gateway
-$SUBNET_PREFIX = $config_json.domain.subnet_prefix
-$DC_HOSTNAME = $config_json.domain.dc_hostname
+$STATIC_IP_ADDR = $DOMAIN_CONFIG.DC_IP
+$DC_DNS_SETTINGS = $DOMAIN_CONFIG.DNS_Servers
+$GATEWAY_IP_ADDR = $DOMAIN_CONFIG.Gateway
+$SUBNET_PREFIX = $DOMAIN_CONFIG.subnet_prefix
+$DC_HOSTNAME = $DOMAIN_CONFIG.DC_hostname
 
 Write-Host "[$(Get-Date -Format 'mm-dd-yyyy HH:mm:ss')] :: Variables created from $($config_json):"
 Write-Host "DC_HOSTNAME:     $DC_HOSTNAME"
