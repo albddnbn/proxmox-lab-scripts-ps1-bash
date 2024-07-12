@@ -242,8 +242,8 @@ ForEach($share_listing in $FILESHARE_CONFIG) {
         FullAccess            = "$DOMAIN_NETBIOS\Domain Admins", "$DOMAIN_NETBIOS\$admin_group_name", "Administrators" # explicit admin listing.
         ReadAccess            = "$DOMAIN_NETBIOS\$user_group_name"
         FolderEnumerationMode = "AccessBased"
-        ContinuouslyAvailable = $true
-        SecurityDescriptor = ""
+        # ContinuouslyAvailable = $true
+        # SecurityDescriptor = ""
     }
 
     ## Create directory if doesn't exist
