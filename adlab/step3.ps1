@@ -5,51 +5,58 @@
 param(
     [ValidateScript({ Test-Path $_ -PathType Leaf })]
     [Parameter(Mandatory = $false)]
-    [string]$configjson = "domain_config.json",
+    $config_ps1 = "config.ps1",
     [ValidateScript({ Test-Path $_ -PathType Leaf })]
     [Parameter(Mandatory = $false)]
-    [string]$groupsjson = "groups.json",
-    [ValidateScript({ Test-Path $_ -PathType Leaf })]
-    [Parameter(Mandatory = $false)]
-    [string]$userscsv = "users.csv",
-    [ValidateScript({ Test-Path $_ -PathType Leaf })]
-    [Parameter(Mandatory = $false)]
-    [string]$sharesjson = "fileshares.json"
-)
-# Makes sure configuration json exists.
+    [string]$userscsv = "users.csv"
+    )
+## Dot source configuration variables:
 try {
-    $config_json = Get-Content $configjson -Raw | ConvertFrom-Json
-    $groups_json = Get-Content $groupsjson -Raw | ConvertFrom-Json
-    $user_info = Import-CSV -Path $userscsv
-    $shares_json = get-content $sharesjson -Raw | ConvertFrom-Json
+    $config_ps1 = Get-ChildItem -Path '.' -Filter "config.ps1" -File -ErrorAction Stop
+    Write-Host "Found $($config_ps1.fullname), dot-sourcing configuration variables.."
+
+    . "$($config_ps1.fullname)"
 }
 catch {
-    Write-Host "$_"
-    Write-Host "[$(Get-Date -Format 'mm-dd-yyyy HH:mm:ss')] :: Error reading one of configuration files, exiting script." -ForegroundColor Red
+
+    Write-Host "[$(Get-Date -Format 'mm-dd-yyyy HH:mm:ss')] :: Error reading searching for / dot sourcing config ps1, exiting script." -ForegroundColor Red
     Read-Host "Press enter to exit.."
     Return 1
-
 }
-Write-Host "[$(Get-Date -Format 'mm-dd-yyyy HH:mm:ss')] :: Creating variables from $config_json."
+Write-Host "[$(Get-Date -Format 'mm-dd-yyyy HH:mm:ss')] :: Creating variables from $configjson JSON file."
 
 ## Variables from json file:
-$DOMAIN_NAME = $config_json.domain.name
-$DC_PASSWORD = ConvertTo-SecureString $config_json.domain.password -AsPlainText -Force
-$DC_HOSTNAME = $config_json.domain.dc_hostname
-$DOMAIN_NETBIOS = $config_json.domain.netbios
+$DOMAIN_NAME = $DOMAIN_CONFIG.Name
+$DC_PASSWORD = ConvertTo-SecureString $DOMAIN_CONFIG.Password -AsPlainText -Force
+$DC_HOSTNAME = $DOMAIN_CONFIG.DC_hostname
+$DOMAIN_NETBIOS = $DOMAIN_CONFIG.NetBIOS
 
 ## DHCP server variables:
-$DHCP_IP_ADDR = $config_json.dhcp.ip_addr
-$DHCP_SCOPE_NAME = $config_json.dhcp.scope.name
-$DHCP_START_RANGE = $config_json.dhcp.scope.start
-$DHCP_END_RANGE = $config_json.dhcp.scope.end
-$DHCP_SUBNET_PREFIX = $config_json.dhcp.scope.subnet_prefix
-$DHCP_GATEWAY = $config_json.dhcp.scope.gateway
-$DHCP_DNS_SERVERS = $config_json.dhcp.scope.dns_servers
+$DHCP_IP_ADDR = $DHCP_SERVER_CONFIG.IP_Addr
+$DHCP_SCOPE_NAME = $DHCP_SERVER_CONFIG.Scope.Name
+$DHCP_START_RANGE = $DHCP_SERVER_CONFIG.Scope.Start
+$DHCP_END_RANGE = $DHCP_SERVER_CONFIG.Scope.End
+$DHCP_SUBNET_PREFIX = $DHCP_SERVER_CONFIG.Scope.subnet_prefix
+$DHCP_GATEWAY = $DHCP_SERVER_CONFIG.Scope.gateway
+$DHCP_DNS_SERVERS = $DHCP_SERVER_CONFIG.Scope.dns_servers
 
 $DOMAIN_PATH = (Get-ADDomain).DistinguishedName
 
-$BASE_OU = "homelab"
+$BASE_OU = $USER_AND_GROUP_CONFIG.base_ou
+## confirm base OU
+Write-Host "Base OU is: " -nonewline
+Write-Host "$BASE_OU" -foregroundcolor yellow
+Write-Host "All users, groups, ous, etc. will be created inside this OU."
+$reply = Read-Host "Proceed? [y/n]"
+if ($reply.tolower() -eq 'y') {
+    $null
+} else {
+    Write-Host "Script execution terminating now due to incorrect base OU: $Base_OU."
+    Write-Host "You can change the base OU in the config.ps1 file (user_and_group_config variable)." -Foregroundcolor yellow
+    Read-Host "Press enter to end."
+    return 1
+}
+
 ## DHCP
 Install-WindowsFeature -Name DHCP -IncludeManagementTools
 
@@ -78,39 +85,44 @@ try {
 } catch {
     Write-Host "Something went wrong with creating $BASE_OU OU." -Foregroundcolor Red
 }
-
+## OUs/Groups created inside Base OU
 $base_ou_path = (Get-ADOrganizationalUnit -Filter "Name -like '$base_ou'").DistinguishedName
-# Foreach OU in json - create ou, then create child groups
-ForEach ($single_ou in $groups_json) {
-    $ou_name = $single_ou.name
+
+## foreach listing in user_and_group_config that isn't the base ou - create an ou and group:
+ForEach($listing in $($USER_AND_GROUP_CONFIG.GetEnumerator() | ? { $_.Name -ne 'base_ou' })) {
+    ## Used for OU and Group Name
+    $item_name = $listing.value.name
+    ## Used for Group Description
+    $item_description = $listing.value.description
+    ## The group created is added to groups in memberof property
+    $item_memberof = $listing.value.memberof
     try {
-        New-ADOrganizationalUnit -Name $ou_name -Path "$base_ou_path" -ProtectedFromAccidentalDeletion $false
-        Write-Host "Created $ou_name OU."
+        New-ADOrganizationalUnit -Name $item_name -Path "$base_ou_path" -ProtectedFromAccidentalDeletion $false
+        Write-Host "Created $item_name OU."
 
-        $ou_path = (Get-ADOrganizationalUnit -Filter "Name -like '$base_ou'").DistinguishedName
+        $ou_path = (Get-ADOrganizationalUnit -Filter "Name -like '$item_name'").DistinguishedName
+
+        New-ADGroup -Name $item_name -GroupCategory Security -GroupScope Global -Path "$ou_path" -Description "$item_description"
+
+        Write-Host "Created group: $item_name."
+
+        ForEach($single_group in $item_memberof) {
+            Add-ADGroupMember -Identity $single_group -Members $item_name
+            Write-Host "Added $item_name to $single_group."
+        }
+
     } catch {
-        Write-Host "Something went wrong with creating $ou_name OU." -Foregroundcolor Red
-    }
-    ForEach ($single_group in $single_ou.children) {
-        try {
-            $group_name = $single_group.name
-            $group_desc = $single_group.description
-            New-ADGroup -Name $group_name -GroupCategory Security -GroupScope Global -Path "$ou_path" -Description $group_desc
-            Write-Host "Created group: $group_name."
-        } catch {
-            Write-Host "Something went wrong with creating group: $group_name." -Foregroundcolor Red
-        }
-
-        ForEach ($member in $single_group.memberof) {
-            Add-ADGroupMember -Identity $member -Members $group_name
-        }
+        Write-Host "Something went wrong with creating $item_name OU/Groups." -Foregroundcolor Red
     }
 }
 
 ## Create users using users.csv\
 Write-Host "[$(Get-Date -Format 'mm-dd-yyyy HH:mm:ss')] :: Creating users from $users_csv."
 
-$department_ou_path = (Get-ADOrganizationalUnit -Filter "Name -like 'users'").DistinguishedName
+## Departmental OUs are created inside the users OU.
+$users_ou_info = ($USER_AND_GROUP_CONFIG.GetEnumerator() | ? {$_.Name -eq 'users'}).value
+$department_ou_path = (Get-ADOrganizationalUnit -Filter "Name -like '$($users_ou_info.name)'").DistinguishedName
+
 
 ## First, need to create a group for each department listed in csv
 ForEach ($unique_dept in $($user_info | select -exp department | select -unique)) {
@@ -211,28 +223,42 @@ ForEach ($user_account in $user_info) {
 If (-not (Test-Path C:\Shares -ErrorAction SilentlyContinue)) {
     New-Item -Path C:\Shares -ItemType Directory | Out-null
 }
-ForEach ($share_obj in $shares_json) {
+
+## Cycle through each fileshare object in $FILESHARE_CONFIG variable
+ForEach($share_listing in $FILESHARE_CONFIG) {
+
+    ## Get Admins group name:
+    $admin_group_name = ($USER_AND_GROUP_CONFIG.GetEnumerator() | ? {$_.Name -eq 'admins'}).value
+    $admin_group_name = $admin_group_name.name
+
+    ## Get Users group name:
+    $users_group_name = ($USER_AND_GROUP_CONFIG.GetEnumerator() | ? {$_.Name -eq 'users'}).value
+    $users_group_name = $users_group_name.name
 
     $ShareParameters = @{
-        Name                  = $share_obj.name
-        Path                  = $share_obj.path
-        Description           = $share_obj.description
-        FullAccess            = "$DOMAIN_NETBIOS\Domain Admins", "$DOMAIN_NETBIOS\homelabadmins", "Administrators" # explicit admin listing.
-        ReadAccess            = "$DOMAIN_NETBIOS\Domain Users"
+        Name                  = $share_listing.name
+        Path                  = $share_listing.path
+        Description           = $share_listing.description
+        FullAccess            = "$DOMAIN_NETBIOS\Domain Admins", "$DOMAIN_NETBIOS\$admin_group_name", "Administrators" # explicit admin listing.
+        ReadAccess            = "$DOMAIN_NETBIOS\$user_group_name"
         FolderEnumerationMode = "AccessBased"
+        ContinuouslyAvailable = $true
+        SecurityDescriptor = ""
     }
-    Write-Host "`nCreating SMB share: $($share_obj.name)."
 
-    if (-not (Test-Path "$($share_obj.path)" -ErrorAction SilentlyContinue)) {
-        New-Item -Path $share_obj.path -ItemType Directory | Out-Null
+    ## Create directory if doesn't exist
+    if (-not (Test-Path "$($share_listing.path)" -ErrorAction SilentlyContinue)) {
+        New-Item -Path $share_listing.path -ItemType Directory | Out-Null
     }
 
     New-SmbShare @ShareParameters
 
     ## disbale inheritance, convert to explicit permissions
-    $acl = Get-Acl -Path $share_obj.path
+    ## disbale inheritance, convert to explicit permissions
+    $acl = Get-Acl -Path $share_listing.path
     $acl.SetAccessRuleProtection($true, $true)
     ## Add access rule for homelabusers group:
-    $acl.AddAccessRule((New-Object System.Security.AccessControl.FileSystemAccessRule("$DOMAIN_NETBIOS\homelabusers", "ReadandExecute,CreateDirectories,AppendData,Traverse,ExecuteFile", "Allow")))
-    Set-Acl -Path $share_obj.path -AclObject $acl
+    $acl.AddAccessRule((New-Object System.Security.AccessControl.FileSystemAccessRule("$DOMAIN_NETBIOS\$user_group_name", "ReadandExecute,CreateDirectories,AppendData,Traverse,ExecuteFile", "Allow")))
+    Set-Acl -Path $share_listing.path -AclObject $acl
+
 }
