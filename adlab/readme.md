@@ -1,3 +1,4 @@
+# I created a new repository for this ad lab related scripts: https://github.com/albddnbn/proxmox-gen-ad-lab/tree/main July 13, 2024.
 This project involves a series of scripts to allow me to quickly recreate the components necessary for an Active Directory Lab including items listed below (divided by scripting language).
 
 The powershell steps are still being 'ironed out' -  5.28.2024
